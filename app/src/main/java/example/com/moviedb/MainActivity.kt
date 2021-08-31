@@ -7,9 +7,12 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import example.com.moviedb.di.Modules
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-
+    @Inject
+    lateinit var modules: Modules
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,5 +23,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_home))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        (application as MyApp).injectComponent?.inject(this@MainActivity)
+        modules.save()
     }
 }

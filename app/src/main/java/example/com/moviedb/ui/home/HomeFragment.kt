@@ -8,7 +8,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.squareup.okhttp.OkHttpClient
 import example.com.moviedb.R
+import example.com.moviedb.di.Modules
+import javax.inject.Inject
 
 class HomeFragment : Fragment() {
 
