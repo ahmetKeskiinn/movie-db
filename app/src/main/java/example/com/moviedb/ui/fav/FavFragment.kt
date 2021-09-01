@@ -22,10 +22,10 @@ class FavFragment : Fragment() {
         favViewModel =
                 ViewModelProvider(this).get(FavViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
+      /*  val textView: TextView = root.findViewById(R.id.text_dashboard)
         favViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
-        })
+        })*/
         return root
     }
 }
