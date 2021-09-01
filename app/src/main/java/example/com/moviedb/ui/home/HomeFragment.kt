@@ -1,5 +1,6 @@
 package example.com.moviedb.ui.home
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +12,16 @@ import androidx.lifecycle.ViewModelProvider
 import com.squareup.okhttp.OkHttpClient
 import example.com.moviedb.R
 import example.com.moviedb.di.Modules
+import retrofit2.Retrofit
 import javax.inject.Inject
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
+    @Inject
+    lateinit var retrofit: Retrofit
+    @Inject
+    lateinit var sharedPref:SharedPreferences
 
     override fun onCreateView(
             inflater: LayoutInflater,

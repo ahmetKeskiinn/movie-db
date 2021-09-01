@@ -1,10 +1,7 @@
 package example.com.moviedb
 
 import android.app.Application
-import example.com.moviedb.di.AppModule
-import example.com.moviedb.di.DaggerInjectComponent
-import example.com.moviedb.di.InjectComponent
-import example.com.moviedb.di.InjectModule
+import example.com.moviedb.di.*
 
 class MyApp : Application() {
     var injectComponent: InjectComponent? = null
@@ -12,11 +9,10 @@ class MyApp : Application() {
         super.onCreate()
         injectComponent = DaggerInjectComponent.builder()
             .appModule(AppModule(this))
-            .injectModule(InjectModule("https://api.github.com"))
+            .retrofitModule(RetrofitModule("https://www.google.com.tr"))
+            .sharedPrefModule(SharedPrefModule())
+            .roomModule(RoomModule(AppModule(this).mApplication))
             .build();
-    }
-    fun getAppComponent(): InjectComponent? {
-        return injectComponent
     }
 
 }
