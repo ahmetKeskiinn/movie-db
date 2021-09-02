@@ -7,12 +7,7 @@ import example.com.moviedb.ui.fav.FavRepository
 import javax.inject.Inject
 
 
-class FavDataSource @Inject constructor(favDao: FavDao) : FavRepository {
-    private var favDao: FavDao
-
-    init {
-        this.favDao = favDao
-    }
+class FavDataSource @Inject constructor(val favDao: FavDao) : FavRepository {
 
     override fun findById(id: Int): LiveData<FavModel?>? {
         return favDao.findById(id);

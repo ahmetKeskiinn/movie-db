@@ -11,16 +11,13 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-class HomeDataSource @Inject constructor(retrofit: Retrofit) : HomeRepository {
-    private var retrofit: Retrofit
-    init {
-        this.retrofit = retrofit
-    }
+class HomeDataSource @Inject constructor(val retrofit: Retrofit) : HomeRepository {
+
 
     override fun getPopularMovies(page: Int): LiveData<List<Example>> {
         val apiResponse = MutableLiveData<List<Example>>()
         val apiService = retrofit.create(GetService::class.java)
-        val call: Call<List<Example?>>? = apiService.getPopularMovies(ApiUtils().APIKEY, ApiUtils().LANGUAGE,page)
+        val call: Call<List<Example?>>? = apiService.getPopularMovies(ApiUtils().APIKEY, ApiUtils().LANGUAGE, page)
         call?.enqueue(object : Callback<List<Example?>> {
             override fun onFailure(call: Call<List<Example?>>, t: Throwable) {
             }

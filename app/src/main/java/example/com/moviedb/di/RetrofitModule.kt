@@ -6,6 +6,11 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
+import example.com.moviedb.ui.fav.FavRepository
+import example.com.moviedb.ui.fav.db.FavDao
+import example.com.moviedb.ui.fav.db.FavDataSource
+import example.com.moviedb.ui.home.HomeRepository
+import example.com.moviedb.ui.home.model.HomeDataSource
 import example.com.moviedb.utils.ApiUtils
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -14,9 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-class RetrofitModule () {
-
-
+class RetrofitModule{
     @Provides
     @Singleton
     fun provideOkHttpCache(application: Application): Cache {
@@ -48,6 +51,12 @@ class RetrofitModule () {
             .baseUrl(ApiUtils().BASE_URL)
             .client(okHttpClient)
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun homeRepository(retrofit: Retrofit): HomeRepository{
+        return HomeDataSource(retrofit)
     }
 
 }
