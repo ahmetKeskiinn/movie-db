@@ -9,7 +9,7 @@ class MyApp : Application() {
         super.onCreate()
         injectComponent = DaggerInjectComponent.builder()
             .appModule(AppModule(this))
-            .retrofitModule(RetrofitModule("https://www.google.com.tr"))
+            .retrofitModule(RetrofitModule())
             .sharedPrefModule(SharedPrefModule())
             .roomModule(RoomModule(AppModule(this).mApplication))
             .build();

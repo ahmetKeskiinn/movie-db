@@ -13,7 +13,7 @@ interface FavDao {
     @Query("SELECT * FROM fav_table")
     fun findAll(): LiveData<List<FavModel?>?>?
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(model: FavModel?): Long
 
     @Delete

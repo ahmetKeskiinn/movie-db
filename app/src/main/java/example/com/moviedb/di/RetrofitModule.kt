@@ -6,6 +6,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
+import example.com.moviedb.utils.ApiUtils
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -13,11 +14,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-class RetrofitModule (var bURL: String) {
-    var mBaseUrl: String
-    init {
-        this.mBaseUrl = bURL
-    }
+class RetrofitModule () {
+
 
     @Provides
     @Singleton
@@ -47,7 +45,7 @@ class RetrofitModule (var bURL: String) {
     fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .baseUrl(mBaseUrl)
+            .baseUrl(ApiUtils().BASE_URL)
             .client(okHttpClient)
             .build()
     }
