@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/homeLayout"
-    tools:context=".ui.fav.FavFragment">
+    tools:context=".features.fav.FavFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView

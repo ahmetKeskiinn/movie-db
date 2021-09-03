@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="example.com.moviedb.ui.home.HomeFragment"
+        android:name="example.com.moviedb.features.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_favorites"
-        android:name="example.com.moviedb.ui.fav.FavFragment"
+        android:name="example.com.moviedb.features.fav.FavFragment"
         android:label="@string/title_fav"
         tools:layout="@layout/fragment_dashboard" />
 
