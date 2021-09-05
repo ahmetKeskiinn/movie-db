@@ -5,7 +5,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 
-class Result {
+class ResultInfo {
     @SerializedName("adult")
     @Expose
     var adult: Boolean? = null
