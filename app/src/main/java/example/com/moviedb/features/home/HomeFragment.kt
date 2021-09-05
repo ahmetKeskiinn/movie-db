@@ -55,7 +55,7 @@ class HomeFragment : Fragment() {
         recyclerAdapter = PopularListAdapter { clickedFav ->
             //checkRepoFromDB(clickedFav)
         }
-        recyclerAdapter.PopularListAdapter(this)
+        recyclerAdapter.PopularListAdapter()
         recyclerView.adapter = recyclerAdapter
     }
     private fun observeData(){

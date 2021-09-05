@@ -5,6 +5,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
+import example.com.moviedb.BuildConfig
 import example.com.moviedb.features.home.PopularMovieListSource
 import example.com.moviedb.utils.BASE_URL
 import example.com.moviedb.utils.GetService
@@ -44,7 +45,7 @@ class NetworkModule (private val application: Application) {
     internal fun provideRetrofitInterface(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .baseUrl(BASE_URL)
+        .baseUrl(BuildConfig.BASE_URL)
         .client(okHttpClient)
         .build()
 

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import example.com.moviedb.BuildConfig
 import example.com.moviedb.features.home.model.MovieInfo
 import example.com.moviedb.features.home.model.ResultInfo
 import example.com.moviedb.utils.APIKEY
@@ -14,7 +15,7 @@ class HomeViewModel @Inject constructor(private val popularMovieList: PopularMov
     private var _popularList = MutableLiveData<List<ResultInfo>>()
     fun getPopularMovies(page: Int): LiveData<List<ResultInfo>> {
         viewModelScope.launch {
-            _popularList.value = popularMovieList.getMovieList(APIKEY,"en-US",1)
+            _popularList.value = popularMovieList.getMovieList("en-US",1)
                     }
         return _popularList as LiveData<List<ResultInfo>>
     }
