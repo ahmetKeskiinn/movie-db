@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import example.com.moviedb.MyApp
 import example.com.moviedb.R
 import example.com.moviedb.utils.ViewModelFactory
@@ -18,6 +19,7 @@ class HomeFragment : Fragment() {
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var root:View
+    private lateinit var recyclerView: RecyclerView
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -36,11 +38,7 @@ class HomeFragment : Fragment() {
         MyApp.appComponent.inject(this)
         homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
         homeViewModel.getPopularMovies(2).observe(viewLifecycleOwner, Observer {
-            for (i in 0..it.size) {
-                for(t in 0..it.get(i).results!!.size){
-                    Log.d("TAG", "initialUI: " + it.get(i).results!!.get(t))
-                }
-            }
+            Log.d("TAG", "initialUI: " + it.size)
         })
     }
 }

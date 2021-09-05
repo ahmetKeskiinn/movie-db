@@ -4,7 +4,8 @@ import com.google.gson.annotations.Expose
 
 import com.google.gson.annotations.SerializedName
 
-class Example {
+
+class MovieInfo {
     @SerializedName("page")
     @Expose
     var page: Int? = null
