@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import example.com.moviedb.R
+import example.com.moviedb.databinding.HomeRecyclerItemBinding
 import example.com.moviedb.features.home.model.ResultInfo
 
 class PopularListAdapter (private val onItemClickListener: (ResultInfo) -> Unit) : ListAdapter<ResultInfo, PopularListAdapter.MovieHolder>(
@@ -20,27 +21,20 @@ class PopularListAdapter (private val onItemClickListener: (ResultInfo) -> Unit)
 ) {
     private val list = ArrayList<String>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.home_recycler_item, parent,
-            false)
-        return MovieHolder(itemView)
+        val inflater = LayoutInflater.from(parent.context)
+        val view = DataBindingUtil.inflate<HomeRecyclerItemBinding>(inflater,R.layout.home_recycler_item,parent,false)
+        return MovieHolder(view)
     }
 
     fun PopularListAdapter(fragment: Fragment) {
-
     }
 
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
-        with(getItem(position)) {
-            holder.movieName.text = this.title
-        }
-
+        holder.view.movieModel = getItem(position)
     }
-
-
     fun getMovieAt(position: Int) = getItem(position)
-    inner class MovieHolder(iv: View) : RecyclerView.ViewHolder(iv) {
+    inner class MovieHolder(var view: HomeRecyclerItemBinding) : RecyclerView.ViewHolder(view.root) {
         val movieName: TextView = itemView.findViewById(R.id.movieName)
         val followMovie: ImageView = itemView.findViewById(R.id.followUnfollowStar)
 

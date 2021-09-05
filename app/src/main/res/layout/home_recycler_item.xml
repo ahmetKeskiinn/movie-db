@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal">
+    <data>
+        <variable
+            name="movieModel"
+            type="example.com.moviedb.features.home.model.ResultInfo" />
+    </data>
+<LinearLayout
     android:background="@color/mainRecyclerColor"
     android:id="@+id/recyclerItemLayout"
     style="@style/recyclerItem">
@@ -13,6 +21,7 @@
         <TextView
             android:id="@+id/movieName"
             style="@style/recyclerItemText"
+            android:text="@{movieModel.title}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,4 +38,5 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.cardview.widget.CardView>
+</LinearLayout>
+</layout>
