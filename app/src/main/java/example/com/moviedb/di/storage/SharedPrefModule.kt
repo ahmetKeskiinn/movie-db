@@ -7,7 +7,7 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@Module
+/*@Module
 class SharedPrefModule {
     @Provides
     @Singleton
@@ -17,4 +17,4 @@ class SharedPrefModule {
             Context.MODE_PRIVATE)
         return sharedPreferences
     }
-}
+}*/

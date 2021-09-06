@@ -5,7 +5,7 @@ import androidx.room.*
 import example.com.moviedb.features.fav.model.FavModel
 
 
-@Dao
+/*@Dao
 interface FavDao {
     @Query("SELECT * FROM fav_table WHERE name=:id")
     fun findById(id: Int): LiveData<FavModel?>?
@@ -18,4 +18,4 @@ interface FavDao {
 
     @Delete
     fun delete(model: FavModel?): Int
-}
+}*/

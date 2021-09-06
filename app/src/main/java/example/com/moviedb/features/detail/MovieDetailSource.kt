@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class MovieDetailSource @Inject constructor(private val api: GetService) {
     suspend fun getDetailForMovie(id: Int): Detail = withContext(Dispatchers.IO) {
-        val infoOfMovie = api.getSelectedMovie(id)
-        infoOfMovie
+        val movieDetail = api.getSelectedMovie(id)
+        movieDetail
     }
 }

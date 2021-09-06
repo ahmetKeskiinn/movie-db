@@ -4,10 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import example.com.moviedb.BuildConfig
 import example.com.moviedb.features.home.model.MovieInfo
 import example.com.moviedb.features.home.model.ResultInfo
-import example.com.moviedb.utils.APIKEY
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,6 +15,6 @@ class HomeViewModel @Inject constructor(private val popularMovieList: PopularMov
         viewModelScope.launch {
             _popularList.value = popularMovieList.getMovieList("en-US",1)
                     }
-        return _popularList as LiveData<List<ResultInfo>>
+        return _popularList
     }
 }
