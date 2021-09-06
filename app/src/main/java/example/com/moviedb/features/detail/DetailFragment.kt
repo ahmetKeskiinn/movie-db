@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.squareup.picasso.Picasso
+import example.com.moviedb.BuildConfig
 import example.com.moviedb.MyApp
 import example.com.moviedb.R
 import example.com.moviedb.features.home.HomeViewModel
@@ -83,13 +84,13 @@ class DetailFragment : Fragment() {
         tagline.setText(data.tagline.toString())
         voteCount.setText(data.voteCount.toString())
         voteAverage.setText(data.voteAverage.toString())
-        Log.d("TAG", "observeData: " + data.backdropPath.toString())
-        updateWithUrl(data.posterPath.toString(),poster)
+        Log.d("TAG", "observeData: " + data.posterPath.toString())
+        updateWithUrl(BuildConfig.IMAGE_BASE_URL+data.posterPath.toString(),poster)
 
     }
     private fun updateWithUrl(url: String, imageViewAvatar: ImageView) {
         if (!url.isEmpty()) {
-            Picasso.get().load(url).centerCrop().resize(200, 200).into(imageViewAvatar)
+            Picasso.get().load(url).into(imageViewAvatar)
         } else {
             Picasso.get().load(R.drawable.ic_launcher_background).centerCrop().resize(200, 200).into(imageViewAvatar)
         }

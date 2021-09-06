@@ -5,12 +5,12 @@
     style="@style/homeLayout"
     tools:context=".features.detail.DetailFragment">
     <LinearLayout
-        style="@style/homeSubLayout"
-        android:layout_marginTop="56dp">
+        style="@style/homeSubLayout">
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             tools:src="@tools:sample/avatars" />
         <LinearLayout
             style="@style/detailSubLayout">
