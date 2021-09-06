@@ -20,7 +20,7 @@ class ResultInfo {
 
     @SerializedName("id")
     @Expose
-    var ıd: Int? = null
+    var id: Int? = null
 
     @SerializedName("original_language")
     @Expose

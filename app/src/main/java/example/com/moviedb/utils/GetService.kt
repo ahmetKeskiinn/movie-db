@@ -1,5 +1,6 @@
 package example.com.moviedb.utils
 
+import androidx.lifecycle.LiveData
 import example.com.moviedb.BuildConfig
 import example.com.moviedb.features.detail.model.Detail
 import example.com.moviedb.features.home.model.MovieInfo

@@ -4,21 +4,20 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import example.com.moviedb.R
 import example.com.moviedb.databinding.HomeRecyclerItemBinding
+import example.com.moviedb.features.home.HomeFragmentDirections
 import example.com.moviedb.features.home.model.ResultInfo
 
 class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) :
     ListAdapter<ResultInfo, PopularListAdapter.MovieHolder>(
         diffCallback
     ) {
-    private val list = ArrayList<String>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = DataBindingUtil.inflate<HomeRecyclerItemBinding>(
@@ -36,12 +35,19 @@ class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) 
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
         holder.view.movieModel = getItem(position)
+        holder.itemView.setOnClickListener{
+           with(getItem(position)){
+               val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(this.id!!)
+               Navigation.findNavController(it).navigate(action)
+           }
+
+
+        }
     }
 
     fun getMovieAt(position: Int) = getItem(position)
     inner class MovieHolder(var view: HomeRecyclerItemBinding) :
         RecyclerView.ViewHolder(view.root) {
-        val movieName: TextView = itemView.findViewById(R.id.movieName)
         val followMovie: ImageView = itemView.findViewById(R.id.followUnfollowStar)
 
         init {

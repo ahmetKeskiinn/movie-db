@@ -32,7 +32,7 @@ class Detail {
 
     @SerializedName("id")
     @Expose
-    var ıd: Int? = null
+    var id: Int? = null
 
     @SerializedName("imdb_id")
     @Expose
