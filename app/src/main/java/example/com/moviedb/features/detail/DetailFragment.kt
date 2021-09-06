@@ -26,6 +26,7 @@ class DetailFragment : Fragment() {
     private lateinit var detailViewModel: DetailViewModel
 
     private lateinit var root:View
+    private lateinit var movieName: TextView
     private lateinit var movieId : TextView
     private lateinit var genre: TextView
     private lateinit var releaseDate: TextView
@@ -67,6 +68,7 @@ class DetailFragment : Fragment() {
         voteCount = root.findViewById(R.id.voteCountTw)
         voteAverage = root.findViewById(R.id.voteAverageTw)
         poster = root.findViewById(R.id.imageView)
+        movieName = root.findViewById(R.id.movieName)
     }
     private fun initialVM(){
         MyApp.appComponent.inject(this)
@@ -77,6 +79,7 @@ class DetailFragment : Fragment() {
     private fun observeData(bundle: Bundle){
         val data = detailViewModel.getMovieDetail(DetailFragmentArgs.fromBundle(bundle).movieId)
         movieId.setText(data.id.toString())
+        movieName.setText(data.title.toString())
         //genre.setText(data.genres.toString())
         releaseDate.setText(data.releaseDate.toString())
         overView.setText(data.overview.toString())
