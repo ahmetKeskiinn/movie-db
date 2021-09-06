@@ -16,5 +16,10 @@
         android:name="example.com.moviedb.features.fav.FavFragment"
         android:label="@string/title_fav"
         tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="example.com.moviedb.features.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" />
 
 </navigation>
