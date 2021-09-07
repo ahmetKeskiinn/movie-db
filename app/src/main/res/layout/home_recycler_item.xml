@@ -32,7 +32,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_unfollow_star" />
+            app:srcCompat="@drawable/ic_unfaw_ic" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
