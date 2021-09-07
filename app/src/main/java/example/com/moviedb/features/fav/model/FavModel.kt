@@ -7,9 +7,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "fav_table")
 data class FavModel(
     @PrimaryKey
+    val movieId: String,
     val Name: String,
-    val Star: String,
-    val Issue: String?,
-    val owner: String?,
-    val URL: String,
 )

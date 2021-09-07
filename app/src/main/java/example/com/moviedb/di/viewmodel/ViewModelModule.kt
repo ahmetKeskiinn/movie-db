@@ -6,6 +6,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import example.com.moviedb.features.detail.DetailViewModel
+import example.com.moviedb.features.fav.FavViewModel
 import example.com.moviedb.features.home.HomeViewModel
 import example.com.moviedb.utils.ViewModelFactory
 import example.com.moviedb.utils.ViewModelKey
@@ -22,6 +23,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(DetailViewModel::class)
     internal abstract fun bindDetailViewModel(viewModel: DetailViewModel): ViewModel
+
+   /* @Binds
+    @IntoMap
+    @ViewModelKey(DetailViewModel::class)
+    internal abstract fun bindFavViewModel(viewModel: FavViewModel): ViewModel*/
 
     @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

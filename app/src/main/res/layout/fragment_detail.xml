@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="movie"
+            type="example.com.moviedb.features.detail.model.Detail" />
+    </data>
+
+
+<LinearLayout
     style="@style/homeLayout"
     tools:context=".features.detail.DetailFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +26,7 @@
         <TextView
             android:id="@+id/movieName"
             style="@style/topTw"
-            android:text="@string/movieName"
+            android:text="@{movie.title}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/imageView2"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,8 +61,8 @@
                     android:text="@string/id" />
                 <TextView
                     android:id="@+id/idTw"
-                    style="@style/detailTw2"
-                    android:text="" />
+                    android:text="@{movie.id.toString()}"
+                    style="@style/detailTw2" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -78,7 +86,7 @@
                 <TextView
                     android:id="@+id/releaseTw"
                     style="@style/detailTw2"
-                    android:text="" />
+                    android:text="@{movie.releaseDate}" />
             </LinearLayout>
 
         </LinearLayout>
@@ -96,7 +104,7 @@
             <TextView
                 android:id="@+id/overViewTw"
                 style="@style/detailTw2"
-                android:text="" />
+                android:text="@{movie.overview}"/>
         </LinearLayout>
         <LinearLayout
             style="@style/bottomSubLayout">
@@ -107,7 +115,7 @@
             <TextView
                 android:id="@+id/statusTw"
                 style="@style/detailTw2"
-                android:text="" />
+                android:text="@{movie.status}" />
         </LinearLayout>
         <LinearLayout
             style="@style/bottomSubLayout">
@@ -118,7 +126,7 @@
             <TextView
                 android:id="@+id/taglineTw"
                 style="@style/detailTw2"
-                android:text="" />
+                android:text="@{movie.tagline}"/>
         </LinearLayout>
         <LinearLayout
             style="@style/bottomSubLayout">
@@ -128,7 +136,7 @@
             <TextView
                 android:id="@+id/voteCountTw"
                 style="@style/detailTw2"
-                android:text="" />
+                android:text="@{movie.voteCount.toString()}" />
         </LinearLayout>
         <LinearLayout
             style="@style/bottomSubLayout">
@@ -138,23 +146,8 @@
             <TextView
                 android:id="@+id/voteAverageTw"
                 style="@style/detailTw2"
-                android:text="" />
+                android:text="@{movie.voteAverage.toString()}" />
         </LinearLayout>
-
     </LinearLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </LinearLayout>
+</layout>

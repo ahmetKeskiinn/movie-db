@@ -3,6 +3,7 @@ package example.com.moviedb.di.network
 import dagger.Component
 import example.com.moviedb.di.viewmodel.ViewModelModule
 import example.com.moviedb.features.detail.DetailFragment
+import example.com.moviedb.features.fav.FavFragment
 import example.com.moviedb.features.home.HomeFragment
 import javax.inject.Singleton
 
@@ -11,5 +12,5 @@ import javax.inject.Singleton
 interface AppComponent{
     fun inject(homeFragment: HomeFragment)
     fun inject(detailFragment: DetailFragment)
-
+    fun inject(favFragment: FavFragment)
 }

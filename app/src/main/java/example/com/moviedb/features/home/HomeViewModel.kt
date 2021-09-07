@@ -13,7 +13,7 @@ class HomeViewModel @Inject constructor(private val popularMovieList: PopularMov
     private var _popularList = MutableLiveData<List<ResultInfo>>()
     fun getPopularMovies(page: Int): LiveData<List<ResultInfo>> {
         viewModelScope.launch {
-            _popularList.value = popularMovieList.getMovieList("en-US",1)
+            _popularList.value = popularMovieList.getMovieList(page)
                     }
         return _popularList
     }

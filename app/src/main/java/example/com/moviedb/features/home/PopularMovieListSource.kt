@@ -10,9 +10,8 @@ import javax.inject.Inject
 
 class PopularMovieListSource @Inject constructor(private val api: GetService) {
     suspend fun getMovieList(
-        language: String, page: Int
+        page: Int
     ): List<ResultInfo>? = withContext(Dispatchers.IO) {
-        //Log.d("TAG", "getMovieList: " + api.getPopularMovieList(BuildConfig.API_KEY).resultInfos?.size)
         return@withContext api.getPopularMovieList(BuildConfig.API_KEY).resultInfos
 
     }

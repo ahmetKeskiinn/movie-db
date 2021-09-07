@@ -7,14 +7,11 @@ import javax.inject.Singleton
 
 
 @Module
-class AppModule(var app: Application) {
-    var mApplication: Application
+class AppModule(val app: Application) {
     @Provides
     @Singleton
     fun providesApplication(): Application {
-        return mApplication
+        return app
     }
-    init {
-        this.mApplication = app
-    }
+
 }

@@ -22,6 +22,9 @@ android {
         buildConfigField "String", "IMAGE_BASE_URL", "\"https://image.tmdb.org/t/p/w500\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    buildFeatures {
+        viewBinding true
+    }
 
     buildTypes {
 
