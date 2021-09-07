@@ -1,6 +1,7 @@
 package example.com.moviedb.features.detail
 
 import android.util.Log
+import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,15 +14,12 @@ import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 class DetailViewModel @Inject constructor(private val movieDetailSource: MovieDetailSource) : ViewModel() {
-    var _detail: Detail = Detail()
-    fun getMovieDetail(id: Int) :Detail{
+    val data = MutableLiveData<Detail>()
+    fun getMovieDetail(id: Int) :LiveData<Detail>{
         viewModelScope.launch {
-            runBlocking {
-                _detail = movieDetailSource.getDetailForMovie(id)
-            }
-
+            data.postValue(movieDetailSource.getDetailForMovie(id))
 
             }
-        return _detail
+        return data
         }
     }

@@ -49,9 +49,12 @@ class DetailFragment : Fragment() {
         detailViewModel = ViewModelProvider(this, viewModelFactory).get(DetailViewModel::class.java)
     }
     private fun observeData(bundle: Bundle){
-        val data = detailViewModel.getMovieDetail(DetailFragmentArgs.fromBundle(bundle).movieId)
-        dataBinding.movie = data
-        dataBinding.imageView.updateWithUrl(BuildConfig.IMAGE_BASE_URL+data.posterPath.toString(),dataBinding.imageView)
+        detailViewModel.getMovieDetail(DetailFragmentArgs.fromBundle(bundle).movieId).observe(
+            viewLifecycleOwner,
+            Observer {
+                dataBinding.movie = it
+                dataBinding.imageView.updateWithUrl(BuildConfig.IMAGE_BASE_URL+it.posterPath.toString(),dataBinding.imageView)
+            })
     }
 
 }
