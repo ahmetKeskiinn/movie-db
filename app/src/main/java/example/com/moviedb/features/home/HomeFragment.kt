@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import example.com.moviedb.MyApp
 import example.com.moviedb.R
+import example.com.moviedb.databinding.FragmentHomeBinding
 import example.com.moviedb.utils.ViewModelFactory
 import example.com.moviedb.utils.adapters.PopularListAdapter
 import javax.inject.Inject
@@ -21,6 +22,7 @@ class HomeFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var homeViewModel: HomeViewModel
+    private lateinit var binding: FragmentHomeBinding
     private lateinit var root:View
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerAdapter: PopularListAdapter
@@ -30,8 +32,8 @@ class HomeFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
 
-        root = inflater.inflate(R.layout.fragment_home, container, false)
-        return root
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,27 +45,25 @@ class HomeFragment : Fragment() {
     }
     private fun initialUI(){
         MyApp.appComponent.inject(this)
-        recyclerView = root.findViewById(R.id.homeRecycler)
     }
     private fun initialVM(){
         homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
-
     }
     private fun initialRecyclerView() {
-        recyclerView.layoutManager = LinearLayoutManager(this.context)
-        recyclerView.setHasFixedSize(true)
         recyclerAdapter = PopularListAdapter { clickedFav ->
-            //checkRepoFromDB(clickedFav)
+
         }
         recyclerAdapter.PopularListAdapter()
-        recyclerView.adapter = recyclerAdapter
+        binding.homeRecycler.apply {
+            layoutManager = LinearLayoutManager(this.context)
+            setHasFixedSize(true)
+            adapter = recyclerAdapter
+        }
     }
     private fun observeData(){
         homeViewModel.getPopularMovies(2).observe(viewLifecycleOwner, Observer {
             Log.d("TAG", "initialUI: " + it.size)
             recyclerAdapter.submitList(it)
-           // recyclerView.adapter = it
-           // recyclerView.adapter = it
         })
     }
 }
