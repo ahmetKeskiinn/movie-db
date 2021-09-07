@@ -46,8 +46,6 @@ class DetailFragment : Fragment() {
     private fun initialVM(){
         MyApp.appComponent.inject(this)
         detailViewModel = ViewModelProvider(this, viewModelFactory).get(DetailViewModel::class.java)
-
-
     }
     private fun observeData(bundle: Bundle){
         val data = detailViewModel.getMovieDetail(DetailFragmentArgs.fromBundle(bundle).movieId)
