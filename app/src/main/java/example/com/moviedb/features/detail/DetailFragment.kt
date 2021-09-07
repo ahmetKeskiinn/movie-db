@@ -19,6 +19,7 @@ import example.com.moviedb.databinding.ActivityMainBinding
 import example.com.moviedb.databinding.FragmentDetailBinding
 import example.com.moviedb.features.home.HomeViewModel
 import example.com.moviedb.utils.ViewModelFactory
+import example.com.moviedb.utils.updateWithUrl
 import javax.inject.Inject
 
 
@@ -50,13 +51,7 @@ class DetailFragment : Fragment() {
     private fun observeData(bundle: Bundle){
         val data = detailViewModel.getMovieDetail(DetailFragmentArgs.fromBundle(bundle).movieId)
         dataBinding.movie = data
-//        updateWithUrl(BuildConfig.IMAGE_BASE_URL+data.posterPath.toString(),poster)
+        dataBinding.imageView.updateWithUrl(BuildConfig.IMAGE_BASE_URL+data.posterPath.toString(),dataBinding.imageView)
     }
-    private fun updateWithUrl(url: String, imageViewAvatar: ImageView) {
-        if (!url.isEmpty()) {
-            Picasso.get().load(url).into(imageViewAvatar)
-        } else {
-            Picasso.get().load(R.drawable.ic_launcher_background).centerCrop().resize(200, 200).into(imageViewAvatar)
-        }
-    }
+
 }
