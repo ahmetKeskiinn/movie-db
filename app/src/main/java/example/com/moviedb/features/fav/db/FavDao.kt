@@ -4,18 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import example.com.moviedb.features.fav.model.FavModel
 
-
-/*@Dao
-interface FavDao {
-    @Query("SELECT * FROM fav_table WHERE name=:id")
-    fun findById(id: Int): LiveData<FavModel?>?
-
-    @Query("SELECT * FROM fav_table")
-    fun findAll(): LiveData<List<FavModel?>?>?
-
+@Dao
+interface FavDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(model: FavModel?): Long
+    fun addMovie(model: FavModel)
 
     @Delete
-    fun delete(model: FavModel?): Int
-}*/
+    fun deleteMovie(model: FavModel?)
+
+    @Query("SELECT * FROM fav_table")
+    fun getAllList() : LiveData<List<FavModel>>
+
+}

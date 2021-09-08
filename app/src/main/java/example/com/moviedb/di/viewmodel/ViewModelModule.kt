@@ -24,11 +24,6 @@ abstract class ViewModelModule {
     @ViewModelKey(DetailViewModel::class)
     internal abstract fun bindDetailViewModel(viewModel: DetailViewModel): ViewModel
 
-   /* @Binds
-    @IntoMap
-    @ViewModelKey(DetailViewModel::class)
-    internal abstract fun bindFavViewModel(viewModel: FavViewModel): ViewModel*/
-
     @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }
