@@ -10,15 +10,15 @@ import example.com.moviedb.di.storage.RoomDatabaseModule
 
 class MyApp : Application() {
 
-    companion object{ lateinit var appComponent: AppComponent
-   // lateinit var instance: LibraryApplication
-   lateinit var roomComponent: RoomComponent
+    companion object{
+        lateinit var appComponent: AppComponent
+        lateinit var roomComponent: RoomComponent
     }
 
 
     override fun onCreate() {
         super.onCreate()
-        appComponent =DaggerAppComponent.builder().networkModule(NetworkModule(this)).build()
+        appComponent =DaggerAppComponent.builder().networkModule(NetworkModule(this)).roomDatabaseModule(RoomDatabaseModule(this)).build()
         roomComponent = DaggerRoomComponent.builder().roomDatabaseModule(RoomDatabaseModule(this)).build()
     }
 

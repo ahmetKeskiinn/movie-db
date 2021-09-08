@@ -27,5 +27,5 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favRecycler"
         style="@style/mainRecycler"
-        tools:listitem="@layout/home_recycler_item"/>
+        tools:listitem="@layout/fav_recycler_item"/>
 </LinearLayout>

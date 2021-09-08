@@ -15,4 +15,6 @@ interface FavDAO {
     @Query("SELECT * FROM fav_table")
     fun getAllList() : LiveData<List<FavModel>>
 
+    @Query("SELECT * FROM fav_table where movieId=:id")
+    fun checkById(id: String): LiveData<List<FavModel>>
 }
