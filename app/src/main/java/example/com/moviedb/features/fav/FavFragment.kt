@@ -44,9 +44,14 @@ class FavFragment : Fragment() {
         MyApp.roomComponent.inject(this)
         favViewModel = ViewModelProviders.of(this, favViewModelFactory)[FavViewModel::class.java]
     }
+    private fun deleteFromDb(model: FavModel){
+        favViewModel.deleteMovie(model)
+        observeData()
+    }
     private fun initialRecyclerView(){
-        recyclerAdapter = FavMoviesAdapter { }
-        favViewModel.insertMovie(FavModel("1","adas"))
+        recyclerAdapter = FavMoviesAdapter { clickedFav ->
+            deleteFromDb(clickedFav)
+        }
         binding.favRecycler.apply {
             layoutManager = LinearLayoutManager(this.context)
             setHasFixedSize(true)

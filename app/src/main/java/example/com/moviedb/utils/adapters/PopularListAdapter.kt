@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import example.com.moviedb.R
 import example.com.moviedb.databinding.HomeRecyclerItemBinding
 import example.com.moviedb.features.home.HomeFragmentDirections
+import example.com.moviedb.features.home.HomeViewModel
 import example.com.moviedb.features.home.model.ResultInfo
+import example.com.moviedb.utils.changeFollowingResource
 
 class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) :
     ListAdapter<ResultInfo, PopularListAdapter.MovieHolder>(
@@ -40,6 +42,9 @@ class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) 
 
         }
     }
+    /*private fun changeIcon(type:String, imageView: ImageView){
+            imageView.changeFollowingResource()
+    }*/
 
     fun getMovieAt(position: Int) = getItem(position)
     inner class MovieHolder(var view: HomeRecyclerItemBinding) :
@@ -50,6 +55,7 @@ class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) 
             followMovie.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION)
                     onItemClickListener(getItem(adapterPosition))
+                  //  changeIcon(followMovie)
             }
         }
     }

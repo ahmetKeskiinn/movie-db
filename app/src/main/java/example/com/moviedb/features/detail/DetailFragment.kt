@@ -8,17 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.squareup.picasso.Picasso
 import example.com.moviedb.BuildConfig
 import example.com.moviedb.MyApp
-import example.com.moviedb.R
-import example.com.moviedb.databinding.ActivityMainBinding
 import example.com.moviedb.databinding.FragmentDetailBinding
 import example.com.moviedb.features.fav.model.FavModel
-import example.com.moviedb.features.home.HomeViewModel
 import example.com.moviedb.utils.ViewModelFactory
 import example.com.moviedb.utils.changeFollowingResource
 import example.com.moviedb.utils.updateWithUrl

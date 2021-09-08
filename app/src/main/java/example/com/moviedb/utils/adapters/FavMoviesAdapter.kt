@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import example.com.moviedb.R
 import example.com.moviedb.databinding.FavRecyclerItemBinding
 import example.com.moviedb.features.fav.model.FavModel
+import example.com.moviedb.utils.changeFollowingResource
 
 class FavMoviesAdapter (private val onItemClickListener: (FavModel) -> Unit) :
         ListAdapter<FavModel, FavMoviesAdapter.FavMovieHolder>(
@@ -30,6 +31,7 @@ class FavMoviesAdapter (private val onItemClickListener: (FavModel) -> Unit) :
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: FavMovieHolder, position: Int) {
         holder.view.favModel = getItem(position)
+        holder.followMovie.changeFollowingResource("followed",holder.followMovie)
         holder.itemView.setOnClickListener{
             with(getItem(position)){
              //   val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(this.movieId!!)
