@@ -23,8 +23,6 @@ class HomeFragment : Fragment() {
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var root:View
-    private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerAdapter: PopularListAdapter
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -53,7 +51,7 @@ class HomeFragment : Fragment() {
         recyclerAdapter = PopularListAdapter { clickedFav ->
 
         }
-        recyclerAdapter.PopularListAdapter()
+
         binding.homeRecycler.apply {
             layoutManager = LinearLayoutManager(this.context)
             setHasFixedSize(true)
@@ -62,7 +60,6 @@ class HomeFragment : Fragment() {
     }
     private fun observeData(){
         homeViewModel.getPopularMovies(2).observe(viewLifecycleOwner, Observer {
-            Log.d("TAG", "initialUI: " + it.size)
             recyclerAdapter.submitList(it)
         })
     }

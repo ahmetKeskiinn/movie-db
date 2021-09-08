@@ -23,4 +23,12 @@ class FavFragment : Fragment() {
 
         return binding.root
     }
+    private fun initialVM(){
+
+    }
+    private fun initialRecyclerView(){
+        binding.favRecycler.apply {
+
+        }
+    }
 }

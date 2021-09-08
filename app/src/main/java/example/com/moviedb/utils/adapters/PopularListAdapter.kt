@@ -28,10 +28,6 @@ class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) 
         )
         return MovieHolder(view)
     }
-
-    fun PopularListAdapter() {
-    }
-
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
         holder.view.movieModel = getItem(position)

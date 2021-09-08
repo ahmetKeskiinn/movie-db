@@ -8,5 +8,5 @@ import androidx.room.PrimaryKey
 data class FavModel(
     @PrimaryKey
     val movieId: String,
-    val Name: String,
+    val name: String,
 )
