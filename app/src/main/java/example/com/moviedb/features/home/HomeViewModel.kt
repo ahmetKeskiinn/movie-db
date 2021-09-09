@@ -32,5 +32,10 @@ class HomeViewModel @Inject constructor(private val popularMovieList: PopularMov
         }
         return _searchMovie
     }
-
+    fun getAllList(): LiveData<List<FavModel>>{
+        return repo.getAllList()
+    }
+    fun checkById(id: String): LiveData<List<FavModel>>{
+        return repo.checkById(id)
+    }
 }

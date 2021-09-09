@@ -19,9 +19,13 @@ import androidx.recyclerview.widget.RecyclerView
 import example.com.moviedb.MyApp
 import example.com.moviedb.R
 import example.com.moviedb.databinding.FragmentHomeBinding
+import example.com.moviedb.features.fav.FavViewModel
+import example.com.moviedb.features.fav.model.FavModel
+import example.com.moviedb.features.home.model.ResultInfo
 import example.com.moviedb.utils.ViewModelFactory
 import example.com.moviedb.utils.adapters.PopularListAdapter
 import javax.inject.Inject
+import kotlin.math.log
 
 class HomeFragment : Fragment() {
     @Inject
@@ -76,11 +80,32 @@ class HomeFragment : Fragment() {
     private fun initialVM(){
         homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
     }
+    private fun checkRepoFromDB(model: FavModel) {
+        var a = 0
+        homeViewModel.checkById(model.movieId).observe(viewLifecycleOwner, Observer {
+            if (it.size == 0 && a == 0) {
+                a = 1
+                insertDB(model)
+            } else {
+                if (a == 0) {
+                    a = 1
+                    deleteDB(model)
+                }
+            }
+        })
+    }
+    private fun insertDB(favModel: FavModel) {
+        homeViewModel.insertMovie(favModel)
+    }
+
+    private fun deleteDB(favModel: FavModel) {
+        homeViewModel.deleteMovie(favModel)
+    }
     private fun initialRecyclerView() {
         recyclerAdapter = PopularListAdapter { clickedFav ->
-
+            checkRepoFromDB(FavModel(clickedFav.id.toString(),clickedFav.title.toString()))
         }
-
+        recyclerAdapter.PopularListAdapter(homeViewModel,this)
         binding.homeRecycler.apply {
             layoutManager = LinearLayoutManager(this.context)
             setHasFixedSize(true)
@@ -94,7 +119,6 @@ class HomeFragment : Fragment() {
     }
     private fun observeTextWatcherData(movieName: String){
         homeViewModel.searchByMovieName(movieName).observe(viewLifecycleOwner, Observer {
-            Log.d("TAG", "observeTextWatcherData: " + it.size )
             if(it.size==0) {
                 Toast.makeText(this.context, getString(R.string.didntFind), Toast.LENGTH_SHORT).show()
             }
