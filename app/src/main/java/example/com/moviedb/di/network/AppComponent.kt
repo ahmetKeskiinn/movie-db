@@ -14,4 +14,5 @@ import javax.inject.Singleton
 interface AppComponent{
     fun inject(homeFragment: HomeFragment)
     fun inject(detailFragment: DetailFragment)
+    fun inject(favFragment: FavFragment)
 }

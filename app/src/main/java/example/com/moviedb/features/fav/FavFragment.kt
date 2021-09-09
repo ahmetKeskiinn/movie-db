@@ -41,7 +41,7 @@ class FavFragment : Fragment() {
         observeData()
     }
     private fun initialVM(){
-        MyApp.roomComponent.inject(this)
+        MyApp.appComponent.inject(this)
         favViewModel = ViewModelProviders.of(this, favViewModelFactory)[FavViewModel::class.java]
     }
     private fun deleteFromDb(model: FavModel){

@@ -15,9 +15,6 @@ import javax.inject.Singleton
 
 @Module
 class RoomDatabaseModule(val application: Application) {
-
-    //private lateinit var db: FavDatabase
-
     private val databaseCallback = object : RoomDatabase.Callback() {
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
