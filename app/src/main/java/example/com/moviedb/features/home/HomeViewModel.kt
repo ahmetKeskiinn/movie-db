@@ -13,16 +13,24 @@ import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(private val popularMovieList: PopularMovieListSource, private val repo:FavRepository) : ViewModel()  {
     private var _popularList = MutableLiveData<List<ResultInfo>>()
+    private val _searchMovie = MutableLiveData<List<ResultInfo>>()
     fun getPopularMovies(page: Int): LiveData<List<ResultInfo>> {
         viewModelScope.launch {
             _popularList.value = popularMovieList.getMovieList(page)
                     }
         return _popularList
     }
-    private fun insertMovie(model:FavModel){
+    fun insertMovie(model:FavModel){
         repo.insertMovie(model)
     }
-    private fun deleteMovie(model:FavModel){
+    fun deleteMovie(model:FavModel){
         repo.deleteMovie(model)
     }
+    fun searchByMovieName(movieName: String) :LiveData<List<ResultInfo>>{
+        viewModelScope.launch {
+            _searchMovie.value = popularMovieList.getSearchList(movieName)
+        }
+        return _searchMovie
+    }
+
 }

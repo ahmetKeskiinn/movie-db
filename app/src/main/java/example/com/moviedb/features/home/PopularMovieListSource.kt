@@ -15,4 +15,7 @@ class PopularMovieListSource @Inject constructor(private val api: GetService) {
         return@withContext api.getPopularMovieList(BuildConfig.API_KEY).resultInfos
 
     }
+    suspend fun getSearchList(movieName: String): List<ResultInfo>? = withContext(Dispatchers.IO) {
+        return@withContext api.getSearchedList(BuildConfig.API_KEY, movieName).resultInfos
+    }
 }

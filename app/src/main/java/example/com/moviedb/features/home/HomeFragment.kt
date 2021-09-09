@@ -1,10 +1,15 @@
 package example.com.moviedb.features.home
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
@@ -40,9 +45,33 @@ class HomeFragment : Fragment() {
         initialVM()
         initialRecyclerView()
         observeData()
+        initialTextWatcher()
     }
     private fun initialUI(){
         MyApp.appComponent.inject(this)
+    }
+    private fun initialTextWatcher(){
+        binding.searchButton.setOnClickListener {
+            binding.searchButton.isInvisible = true
+            binding.textView.isInvisible = true
+            binding.searchMovie.apply {
+                isVisible = true
+                addTextChangedListener(object : TextWatcher {
+                    override fun afterTextChanged(s: Editable?) {
+                    }
+
+                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                    }
+
+                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                        if(s?.length!! >3){
+                            observeTextWatcherData(s.toString())
+                        }
+                    }
+                })
+            }
+
+        }
     }
     private fun initialVM(){
         homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
@@ -63,4 +92,21 @@ class HomeFragment : Fragment() {
             recyclerAdapter.submitList(it)
         })
     }
+    private fun observeTextWatcherData(movieName: String){
+        homeViewModel.searchByMovieName(movieName).observe(viewLifecycleOwner, Observer {
+            Log.d("TAG", "observeTextWatcherData: " + it.size )
+            if(it.size==0) {
+                Toast.makeText(this.context, getString(R.string.didntFind), Toast.LENGTH_SHORT).show()
+            }
+                recyclerAdapter.submitList(it)
+
+        })
+    }
+
+    override fun onStop() {
+        super.onStop()
+        binding.searchMovie.setText("")
+    }
+
+
 }

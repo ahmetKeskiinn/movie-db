@@ -18,5 +18,6 @@
     <string name="movieName">Movie Name</string>
 
     <!-- Detail STRİNGS END -->
-
+    <string name="searchMovie">Search Movie...</string>
+    <string name="didntFind">Sorry! We could not find whatever you want!</string>
 </resources>

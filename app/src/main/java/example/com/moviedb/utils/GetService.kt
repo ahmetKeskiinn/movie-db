@@ -17,4 +17,8 @@ interface GetService {
     @GET("movie/{id}?api_key=${BuildConfig.API_KEY}&language=en-US")
     suspend fun getSelectedMovie(@Path("id") id: Int): Detail
 
+    @GET("/3/search/movie")
+    suspend fun getSearchedList(
+            @Query("api_key") key: String = BuildConfig.API_KEY,@Query("query") movieName: String
+    ): MovieInfo
 }
