@@ -8,6 +8,7 @@ import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -21,7 +22,7 @@ import example.com.moviedb.features.home.model.ResultInfo
 import example.com.moviedb.utils.changeFollowingResource
 
 class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) :
-    ListAdapter<ResultInfo, PopularListAdapter.MovieHolder>(
+    PagingDataAdapter<ResultInfo, PopularListAdapter.MovieHolder>(
         diffCallback
     ) {
     private val list = ArrayList<String>()
@@ -45,11 +46,10 @@ class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) 
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
         holder.view.movieModel = getItem(position)
-        checkFollowFromDB(getItem(position).title.toString(),holder.followMovie)
+        checkFollowFromDB(getItem(position)?.title.toString(),holder.followMovie)
         holder.itemView.setOnClickListener{
            with(getItem(position)){
-
-               val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(this.id!!)
+               val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(this!!.id!!)
                Navigation.findNavController(it).navigate(action)
            }
 
@@ -83,8 +83,8 @@ class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) 
         init {
             followMovie.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION)
-                    onItemClickListener(getItem(adapterPosition))
-                    checkFollow(followMovie,getItem(adapterPosition).title.toString())
+                    getItem(adapterPosition)?.let { it1 -> onItemClickListener(it1) }
+                    checkFollow(followMovie,getItem(adapterPosition)?.title.toString())
             }
         }
     }

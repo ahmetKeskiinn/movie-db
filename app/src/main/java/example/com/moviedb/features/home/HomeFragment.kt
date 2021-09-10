@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import example.com.moviedb.MyApp
@@ -48,7 +49,7 @@ class HomeFragment : Fragment() {
         initialUI()
         initialVM()
         initialRecyclerView()
-        observeData()
+        //observeData()
         initialTextWatcher()
     }
     private fun initialUI(){
@@ -111,20 +112,19 @@ class HomeFragment : Fragment() {
             setHasFixedSize(true)
             adapter = recyclerAdapter
         }
+        homeViewModel.getPopularMovieList().observe(viewLifecycleOwner) {
+            recyclerAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+        }
     }
-    private fun observeData(){
-        homeViewModel.getPopularMovies(2).observe(viewLifecycleOwner, Observer {
-            recyclerAdapter.submitList(it)
-        })
-    }
+
     private fun observeTextWatcherData(movieName: String){
-        homeViewModel.searchByMovieName(movieName).observe(viewLifecycleOwner, Observer {
+      /*  homeViewModel.searchByMovieName(movieName).observe(viewLifecycleOwner, Observer {
             if(it.size==0) {
                 Toast.makeText(this.context, getString(R.string.didntFind), Toast.LENGTH_SHORT).show()
             }
                 recyclerAdapter.submitList(it)
 
-        })
+        })*/
     }
 
     override fun onStop() {

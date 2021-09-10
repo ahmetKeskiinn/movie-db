@@ -11,7 +11,7 @@ import retrofit2.http.Query
 interface GetService {
     @GET("/3/movie/popular")
     suspend fun getPopularMovieList(
-        @Query("api_key") key: String = BuildConfig.API_KEY
+        @Query("api_key") key: String = BuildConfig.API_KEY,@Query("page") page:Int
     ): MovieInfo
 
     @GET("movie/{id}?api_key=${BuildConfig.API_KEY}&language=en-US")
@@ -20,5 +20,15 @@ interface GetService {
     @GET("/3/search/movie")
     suspend fun getSearchedList(
             @Query("api_key") key: String = BuildConfig.API_KEY,@Query("query") movieName: String
+    ): MovieInfo
+
+    @GET("search/movie?api_key=${BuildConfig.API_KEY}")
+    suspend fun searchMovies(
+        @Query("query") query: String,
+        @Query("page") page: Int
+    ): MovieInfo
+    @GET("movie/now_playing?api_key=${BuildConfig.API_KEY}")
+    suspend fun getNowPlayingMovies(
+        @Query("page") position: Int
     ): MovieInfo
 }
