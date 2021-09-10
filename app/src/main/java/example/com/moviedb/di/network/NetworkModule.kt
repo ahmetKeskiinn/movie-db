@@ -7,7 +7,7 @@ import dagger.Provides
 import dagger.Reusable
 import example.com.moviedb.BuildConfig
 import example.com.moviedb.features.detail.MovieDetailSource
-import example.com.moviedb.features.detail.model.Detail
+import example.com.moviedb.features.home.HomePagingSource
 import example.com.moviedb.features.home.PopularMovieListSource
 import example.com.moviedb.utils.GetService
 import okhttp3.Cache
@@ -18,7 +18,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.util.*
 import java.util.concurrent.TimeUnit
-import javax.inject.Named
 
 
 @Module
@@ -57,11 +56,16 @@ class NetworkModule (private val application: Application) {
 
     @Provides
     @Reusable
-    internal fun providePopularMovies(api: GetService): PopularMovieListSource = PopularMovieListSource(api)
+    internal fun providePagingMovies(api: GetService): HomePagingSource = HomePagingSource( api )
+
+    @Provides
+    @Reusable
+    internal fun providePopularMovies(api: GetService, homePagingSource: HomePagingSource): PopularMovieListSource = PopularMovieListSource(api,homePagingSource)
 
     @Provides
     @Reusable
     internal fun provideDetailMovies(detailApi:GetService): MovieDetailSource = MovieDetailSource(detailApi)
+
 
 
 }

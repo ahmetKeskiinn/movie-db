@@ -22,13 +22,4 @@ interface GetService {
             @Query("api_key") key: String = BuildConfig.API_KEY,@Query("query") movieName: String
     ): MovieInfo
 
-    @GET("search/movie?api_key=${BuildConfig.API_KEY}")
-    suspend fun searchMovies(
-        @Query("query") query: String,
-        @Query("page") page: Int
-    ): MovieInfo
-    @GET("movie/now_playing?api_key=${BuildConfig.API_KEY}")
-    suspend fun getNowPlayingMovies(
-        @Query("page") position: Int
-    ): MovieInfo
 }

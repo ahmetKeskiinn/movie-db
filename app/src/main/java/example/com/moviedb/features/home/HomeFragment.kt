@@ -25,6 +25,8 @@ import example.com.moviedb.features.fav.model.FavModel
 import example.com.moviedb.features.home.model.ResultInfo
 import example.com.moviedb.utils.ViewModelFactory
 import example.com.moviedb.utils.adapters.PopularListAdapter
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.math.log
 
@@ -49,7 +51,7 @@ class HomeFragment : Fragment() {
         initialUI()
         initialVM()
         initialRecyclerView()
-        //observeData()
+        observeData()
         initialTextWatcher()
     }
     private fun initialUI(){
@@ -112,19 +114,18 @@ class HomeFragment : Fragment() {
             setHasFixedSize(true)
             adapter = recyclerAdapter
         }
-        homeViewModel.getPopularMovieList().observe(viewLifecycleOwner) {
-            recyclerAdapter.submitData(viewLifecycleOwner.lifecycle, it)
-        }
+
     }
 
     private fun observeTextWatcherData(movieName: String){
-      /*  homeViewModel.searchByMovieName(movieName).observe(viewLifecycleOwner, Observer {
-            if(it.size==0) {
-                Toast.makeText(this.context, getString(R.string.didntFind), Toast.LENGTH_SHORT).show()
-            }
-                recyclerAdapter.submitList(it)
-
-        })*/
+        homeViewModel.searchByMovieName(movieName).observe(viewLifecycleOwner) {
+            recyclerAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+        }
+    }
+    private fun observeData(){
+        homeViewModel.getPopularMovieList().observe(viewLifecycleOwner) {
+            recyclerAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+        }
     }
 
     override fun onStop() {
