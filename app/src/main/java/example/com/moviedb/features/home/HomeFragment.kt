@@ -71,8 +71,11 @@ class HomeFragment : Fragment() {
                     }
 
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                        if(s?.length!! >3){
+                        if(s?.length!! >2){
                             observeTextWatcherData(s.toString())
+                        }
+                        if(s.length == 0 ){
+                            observeData()
                         }
                     }
                 })

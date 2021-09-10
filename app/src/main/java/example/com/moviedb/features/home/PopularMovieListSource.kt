@@ -10,12 +10,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class PopularMovieListSource @Inject constructor(private val api: GetService, private val homePagingSource: HomePagingSource) {
-    suspend fun getMovieList(
-        page: Int
-    ): List<ResultInfo>? = withContext(Dispatchers.IO) {
-        return@withContext api.getPopularMovieList(BuildConfig.API_KEY,page).results
 
-    }
     fun getSearchList(movieName: String):LiveData<PagingData<ResultInfo>>{
         homePagingSource.key = movieName
 

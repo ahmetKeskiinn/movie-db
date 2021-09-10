@@ -17,14 +17,6 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(private val popularMovieList: PopularMovieListSource, private val repo:FavRepository) : ViewModel()  {
-    private var _popularList = MutableLiveData<List<ResultInfo>>()
-   // private val _searchMovie = LiveData<PagingData<ResultInfo>>()
-    fun getPopularMovies(page: Int): LiveData<List<ResultInfo>> {
-        viewModelScope.launch {
-            _popularList.value = popularMovieList.getMovieList(page)
-                    }
-        return _popularList
-    }
     fun insertMovie(model:FavModel){
         repo.insertMovie(model)
     }

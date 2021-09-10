@@ -8,9 +8,7 @@ import example.com.moviedb.features.fav.model.FavModel
 
 class FavViewModel(private var repo: FavRepository) : ViewModel() {
 
-    fun insertMovie(model: FavModel){
-        repo.insertMovie(model)
-    }
+
     fun getAllList(): LiveData<List<FavModel>>{
         return repo.getAllList()
     }

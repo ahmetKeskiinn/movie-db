@@ -29,9 +29,6 @@ class HomePagingSource @Inject constructor(val apiService: GetService) : PagingS
                         key
                 )
             }
-
-
-
             val popularMovies = response.results
             LoadResult.Page(
                 data = popularMovies,
