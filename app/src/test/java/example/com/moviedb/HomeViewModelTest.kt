@@ -9,24 +9,31 @@ import org.junit.Test
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 
-
-
-
-
 class HomeViewModelTest {
-   @Mock
-    var source: PopularMovieListSource? = null
+
     @Mock
-    var repo: FavRepository? = null
+    private val repo: FavRepository? = null
+
+    @Mock
+    private val source: PopularMovieListSource? = null
 
     @InjectMocks
-    var viewmodel: HomeViewModel? = null
+    private val viewmodel: HomeViewModel?=null
+
+
     @Test
     fun testDeleteMovie() {
         val model = FavModel("1", "Test")
         viewmodel?.deleteMovie(model)
+    }
+    @Test
+    fun testInsertMovie() {
+        val model = FavModel("1", "Test")
+        viewmodel?.insertMovie(model)
+        verify(viewmodel)?.insertMovie(model)
     }
     @Test
     fun testSearchByMovieName() {
