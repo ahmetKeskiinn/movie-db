@@ -1,4 +1,4 @@
-package example.com.moviedb.di.network
+package example.com.moviedb.di
 
 import android.app.Application
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -6,9 +6,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.Reusable
 import example.com.moviedb.BuildConfig
-import example.com.moviedb.features.detail.MovieDetailSource
-import example.com.moviedb.features.home.HomePagingSource
-import example.com.moviedb.features.home.PopularMovieListSource
 import example.com.moviedb.utils.GetService
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -18,7 +15,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.util.*
 import java.util.concurrent.TimeUnit
-
 
 @Module
 class NetworkModule (private val application: Application) {
@@ -30,7 +26,6 @@ class NetworkModule (private val application: Application) {
         interceptor.level = HttpLoggingInterceptor.Level.BASIC
 
         val cacheDir = File(application.cacheDir, UUID.randomUUID().toString())
-        // 15 MiB cache
         val cache = Cache(cacheDir, 15 * 1024 * 1024)
         return OkHttpClient.Builder()
             .cache(
@@ -53,19 +48,6 @@ class NetworkModule (private val application: Application) {
     @Provides
     @Reusable
     internal fun provideMovieApi(retrofit: Retrofit): GetService = retrofit.create(GetService::class.java)
-
-    @Provides
-    @Reusable
-    internal fun providePagingMovies(api: GetService): HomePagingSource = HomePagingSource( api )
-
-    @Provides
-    @Reusable
-    internal fun providePopularMovies(api: GetService, homePagingSource: HomePagingSource): PopularMovieListSource = PopularMovieListSource(api,homePagingSource)
-
-    @Provides
-    @Reusable
-    internal fun provideDetailMovies(detailApi:GetService): MovieDetailSource = MovieDetailSource(detailApi)
-
 
 
 }

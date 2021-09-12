@@ -1,4 +1,4 @@
-package example.com.moviedb.di.viewmodel
+package example.com.moviedb.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -12,17 +12,7 @@ import example.com.moviedb.utils.ViewModelFactory
 import example.com.moviedb.utils.ViewModelKey
 
 @Module
-abstract class ViewModelModule {
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(HomeViewModel::class)
-    internal abstract fun bindHomeViewModel(viewModel: HomeViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(DetailViewModel::class)
-    internal abstract fun bindDetailViewModel(viewModel: DetailViewModel): ViewModel
+abstract class FactoryModule {
 
     @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

@@ -1,4 +1,4 @@
-package example.com.moviedb.di.app
+package example.com.moviedb.di
 
 import android.app.Application
 import dagger.Module

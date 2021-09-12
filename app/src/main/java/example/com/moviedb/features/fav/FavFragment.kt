@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import example.com.moviedb.MyApp
 import example.com.moviedb.databinding.FragmentDashboardBinding
 import example.com.moviedb.features.fav.model.FavModel
-import example.com.moviedb.utils.FavMovieViewModelFactory
+import example.com.moviedb.utils.ViewModelFactory
 import example.com.moviedb.utils.adapters.FavMoviesAdapter
 import javax.inject.Inject
 import kotlin.math.log
@@ -23,7 +23,7 @@ class FavFragment : Fragment() {
     private lateinit var binding:FragmentDashboardBinding
     private lateinit var recyclerAdapter : FavMoviesAdapter
     @Inject
-    lateinit var favViewModelFactory: FavMovieViewModelFactory
+    lateinit var favViewModelFactory: ViewModelFactory
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,

@@ -1,4 +1,4 @@
-package example.com.moviedb.di.storage
+package example.com.moviedb.di
 
 import android.app.Application
 import android.util.Log
@@ -38,7 +38,5 @@ class RoomDatabaseModule(val application: Application) {
         return db
     }
 
-    @Singleton
-    @Provides
-    fun providesBookDAO(libraryDatabase: FavDatabase) = libraryDatabase.getFavDao()
+
 }

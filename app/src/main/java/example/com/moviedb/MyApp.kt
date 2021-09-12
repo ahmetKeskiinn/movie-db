@@ -1,10 +1,13 @@
 package example.com.moviedb
 
 import android.app.Application
-import example.com.moviedb.di.network.AppComponent
-import example.com.moviedb.di.network.DaggerAppComponent
-import example.com.moviedb.di.network.NetworkModule
-import example.com.moviedb.di.storage.RoomDatabaseModule
+import androidx.fragment.app.Fragment
+import dagger.android.DispatchingAndroidInjector
+import example.com.moviedb.di.AppComponent
+import example.com.moviedb.di.DaggerAppComponent
+import example.com.moviedb.di.NetworkModule
+import example.com.moviedb.di.RoomDatabaseModule
+import javax.inject.Inject
 
 class MyApp : Application() {
 
@@ -12,11 +15,15 @@ class MyApp : Application() {
         lateinit var appComponent: AppComponent
     }
 
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
     override fun onCreate() {
         super.onCreate()
-        appComponent =DaggerAppComponent.builder().networkModule(NetworkModule(this)).roomDatabaseModule(RoomDatabaseModule(this)).build()
+        appComponent = DaggerAppComponent.builder().networkModule(NetworkModule(this)).roomDatabaseModule(
+            RoomDatabaseModule(this)
+        ).build()
     }
 
-
 }
+
