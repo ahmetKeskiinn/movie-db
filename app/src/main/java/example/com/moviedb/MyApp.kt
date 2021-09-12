@@ -1,12 +1,14 @@
 package example.com.moviedb
 
 import android.app.Application
+import android.util.Log
 import androidx.fragment.app.Fragment
 import dagger.android.DispatchingAndroidInjector
 import example.com.moviedb.di.AppComponent
 import example.com.moviedb.di.DaggerAppComponent
 import example.com.moviedb.di.NetworkModule
 import example.com.moviedb.di.RoomDatabaseModule
+import timber.log.Timber
 import javax.inject.Inject
 
 class MyApp : Application() {
@@ -23,6 +25,10 @@ class MyApp : Application() {
         appComponent = DaggerAppComponent.builder().networkModule(NetworkModule(this)).roomDatabaseModule(
             RoomDatabaseModule(this)
         ).build()
+        if(BuildConfig.DEBUG){
+            Timber.plant(Timber.DebugTree())
+        }
+        Timber.i("Timber loggin is ready");
     }
 
 }
