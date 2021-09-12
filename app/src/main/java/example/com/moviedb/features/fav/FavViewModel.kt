@@ -1,7 +1,6 @@
 package example.com.moviedb.features.fav
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import example.com.moviedb.features.fav.db.FavRepository
 import example.com.moviedb.features.fav.model.FavModel

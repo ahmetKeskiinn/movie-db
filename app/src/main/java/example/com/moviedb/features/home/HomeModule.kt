@@ -6,7 +6,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.Reusable
 import dagger.multibindings.IntoMap
-import example.com.moviedb.features.detail.DetailViewModel
 import example.com.moviedb.utils.GetService
 import example.com.moviedb.utils.ViewModelKey
 

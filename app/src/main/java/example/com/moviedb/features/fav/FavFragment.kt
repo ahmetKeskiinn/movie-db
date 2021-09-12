@@ -1,7 +1,6 @@
 package example.com.moviedb.features.fav
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import example.com.moviedb.features.fav.model.FavModel
 import example.com.moviedb.utils.ViewModelFactory
 import example.com.moviedb.utils.adapters.FavMoviesAdapter
 import javax.inject.Inject
-import kotlin.math.log
 
 class FavFragment : Fragment() {
 

@@ -6,7 +6,6 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
-import example.com.moviedb.features.detail.DetailViewModel
 import example.com.moviedb.features.fav.db.FavRepository
 import example.com.moviedb.features.fav.db.FavDatabase
 import example.com.moviedb.utils.ViewModelKey

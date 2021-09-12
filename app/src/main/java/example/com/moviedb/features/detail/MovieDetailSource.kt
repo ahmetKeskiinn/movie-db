@@ -1,6 +1,5 @@
 package example.com.moviedb.features.detail
 
-import androidx.lifecycle.LiveData
 import example.com.moviedb.features.detail.model.Detail
 import example.com.moviedb.utils.GetService
 import kotlinx.coroutines.Dispatchers

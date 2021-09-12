@@ -1,7 +1,6 @@
 package example.com.moviedb.utils.adapters
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -10,11 +9,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import example.com.moviedb.R
 import example.com.moviedb.databinding.HomeRecyclerItemBinding
-import example.com.moviedb.features.fav.FavViewModel
 import example.com.moviedb.features.home.HomeFragment
 import example.com.moviedb.features.home.HomeFragmentDirections
 import example.com.moviedb.features.home.HomeViewModel
