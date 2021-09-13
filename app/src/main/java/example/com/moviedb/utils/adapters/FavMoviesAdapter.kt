@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import example.com.moviedb.R
 import example.com.moviedb.databinding.FavRecyclerItemBinding
+import example.com.moviedb.features.fav.FavFragmentDirections
 import example.com.moviedb.features.fav.model.FavModel
 import example.com.moviedb.utils.changeFollowingResource
 
@@ -33,8 +35,8 @@ class FavMoviesAdapter (private val onItemClickListener: (FavModel) -> Unit) :
         holder.followMovie.changeFollowingResource("followed",holder.followMovie)
         holder.itemView.setOnClickListener{
             with(getItem(position)){
-             //   val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(this.movieId!!)
-             //   Navigation.findNavController(it).navigate(action)
+                val action = FavFragmentDirections.actionNavigationFavoritesToDetailFragment(this.movieId.toInt())
+                Navigation.findNavController(it).navigate(action)
             }
 
 

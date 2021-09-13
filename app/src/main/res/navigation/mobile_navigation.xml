@@ -19,7 +19,11 @@
         android:id="@+id/navigation_favorites"
         android:name="example.com.moviedb.features.fav.FavFragment"
         android:label="@string/title_fav"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_favorites_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="example.com.moviedb.features.detail.DetailFragment"
@@ -31,6 +35,9 @@
         <action
             android:id="@+id/action_detailFragment_to_navigation_home"
             app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_detailFragment_to_navigation_favorites"
+            app:destination="@id/navigation_favorites" />
     </fragment>
 
 </navigation>
