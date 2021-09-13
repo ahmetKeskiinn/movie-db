@@ -1,7 +1,6 @@
 package example.com.moviedb.features.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import androidx.paging.PagingData
 import example.com.moviedb.features.fav.db.FavRepository
 import example.com.moviedb.features.fav.model.FavModel
@@ -21,8 +20,19 @@ class HomeViewModel @Inject constructor(private val popularMovieList: PopularMov
     fun getAllList(): LiveData<List<FavModel>>{
         return repo.getAllList()
     }
-    fun checkById(id: String): LiveData<List<FavModel>>{
-        return repo.checkById(id)
+    fun checkById(model: FavModel, viewLifecycleOwner:LifecycleOwner){
+        var a = 0
+        repo.checkById(model.movieId).observe(viewLifecycleOwner, Observer {
+            if (it.size == 0 && a == 0) {
+                a = 1
+                insertMovie(model)
+            } else {
+                if (a == 0) {
+                    a = 1
+                    deleteMovie(model)
+                }
+            }
+        })
     }
     fun getPopularMovieList(): LiveData<PagingData<ResultInfo>> {
         return popularMovieList.getPopularMovieList()

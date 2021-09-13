@@ -81,35 +81,14 @@ class HomeFragment : Fragment() {
     private fun initialVM(){
         homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
     }
-    private fun checkRepoFromDB(model: FavModel) {
-        var a = 0
-        homeViewModel.checkById(model.movieId).observe(viewLifecycleOwner, Observer {
-            if (it.size == 0 && a == 0) {
-                a = 1
-                insertDB(model)
-            } else {
-                if (a == 0) {
-                    a = 1
-                    deleteDB(model)
-                }
-            }
-        })
-    }
-    private fun insertDB(favModel: FavModel) {
-        homeViewModel.insertMovie(favModel)
-    }
 
-    private fun deleteDB(favModel: FavModel) {
-        homeViewModel.deleteMovie(favModel)
-    }
     private fun initialRecyclerView() {
         recyclerAdapter = PopularListAdapter { clickedFav ->
-            checkRepoFromDB(FavModel(clickedFav.id.toString(), clickedFav.title.toString()))
+           homeViewModel.checkById(FavModel(clickedFav.id.toString(),clickedFav.title.toString()),this)
         }
         recyclerAdapter.PopularListAdapter(homeViewModel, this)
         binding.homeRecycler.apply {
             layoutManager = LinearLayoutManager(this.context)
-           // layoutManager = GridLayoutManager(context, 2)
             setHasFixedSize(true)
             adapter = recyclerAdapter
         }
