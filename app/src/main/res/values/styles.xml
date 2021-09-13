@@ -59,7 +59,7 @@
     <style name="mainRecycler">
         <item name="android:padding">10dp</item>
         <item name="android:paddingBottom">10dp </item>
-        <item name="android:layout_marginTop">56dp</item>
+        <item name="android:layout_marginTop">96dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginBottom">56dp</item>

@@ -1,18 +1,23 @@
 package example.com.moviedb.features.home
 
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import example.com.moviedb.MyApp
+import example.com.moviedb.R
 import example.com.moviedb.databinding.FragmentHomeBinding
 import example.com.moviedb.features.fav.model.FavModel
 import example.com.moviedb.utils.ViewModelFactory
@@ -42,6 +47,7 @@ class HomeFragment : Fragment() {
         initialRecyclerView()
         observeData()
         initialTextWatcher()
+        initialLayoutManagers()
     }
     private fun initialUI(){
         MyApp.appComponent.inject(this)
@@ -60,10 +66,10 @@ class HomeFragment : Fragment() {
                     }
 
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                        if(s?.length!! >2){
+                        if (s?.length!! > 2) {
                             observeTextWatcherData(s.toString())
                         }
-                        if(s.length == 0 ){
+                        if (s.length == 0) {
                             observeData()
                         }
                     }
@@ -98,11 +104,12 @@ class HomeFragment : Fragment() {
     }
     private fun initialRecyclerView() {
         recyclerAdapter = PopularListAdapter { clickedFav ->
-            checkRepoFromDB(FavModel(clickedFav.id.toString(),clickedFav.title.toString()))
+            checkRepoFromDB(FavModel(clickedFav.id.toString(), clickedFav.title.toString()))
         }
-        recyclerAdapter.PopularListAdapter(homeViewModel,this)
+        recyclerAdapter.PopularListAdapter(homeViewModel, this)
         binding.homeRecycler.apply {
             layoutManager = LinearLayoutManager(this.context)
+           // layoutManager = GridLayoutManager(context, 2)
             setHasFixedSize(true)
             adapter = recyclerAdapter
         }
@@ -117,6 +124,35 @@ class HomeFragment : Fragment() {
     private fun observeData(){
         homeViewModel.getPopularMovieList().observe(viewLifecycleOwner) {
             recyclerAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+        }
+    }
+    private fun initialLayoutManagers(){
+        binding.gridButton.setOnClickListener{
+            binding.gridButton.apply {
+                isClickable = false
+                setBackgroundColor(R.color.lightGray)
+              //  setBackgroundColor(Color.parseColor("#666bff"))
+                binding.homeRecycler.apply {
+                    layoutManager = GridLayoutManager(this.context,2)
+                }
+            }
+            binding.listButton.apply {
+                isClickable = true
+                setBackgroundColor(R.color.white)
+            }
+        }
+        binding.listButton.setOnClickListener{
+            binding.gridButton.apply {
+                isClickable = true
+                setBackgroundColor(R.color.white)
+            }
+            binding.listButton.apply {
+                isClickable = false
+                setBackgroundColor(R.color.lightGray)
+                binding.homeRecycler.apply {
+                    layoutManager = LinearLayoutManager(this.context)
+                }
+            }
         }
     }
 

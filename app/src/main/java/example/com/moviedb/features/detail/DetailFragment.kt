@@ -24,7 +24,6 @@ class DetailFragment : Fragment() {
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var detailViewModel: DetailViewModel
     private lateinit var dataBinding:FragmentDetailBinding
-    private lateinit var poster:ImageView
     private lateinit var type:String
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

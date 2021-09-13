@@ -15,42 +15,50 @@ import org.mockito.MockitoAnnotations
 class HomeViewModelTest {
 
     @Mock
-    private val repo: FavRepository? = null
+    private lateinit var repo: FavRepository
 
     @Mock
-    private val source: PopularMovieListSource? = null
+    private lateinit var source: PopularMovieListSource
 
     @InjectMocks
-    private val viewmodel: HomeViewModel?=null
+    private lateinit var viewmodel: HomeViewModel
 
-
+    @Before
+    fun before(){
+        MockitoAnnotations.initMocks(this)
+    }
     @Test
     fun testDeleteMovie() {
         val model = FavModel("1", "Test")
-        viewmodel?.deleteMovie(model)
+        viewmodel.deleteMovie(model)
+        verify(viewmodel).deleteMovie(model)
     }
     @Test
     fun testInsertMovie() {
         val model = FavModel("1", "Test")
-        viewmodel?.insertMovie(model)
-        verify(viewmodel)?.insertMovie(model)
+        viewmodel.insertMovie(model)
+        verify(viewmodel).insertMovie(model)
     }
     @Test
     fun testSearchByMovieName() {
-        viewmodel?.searchByMovieName("test")
+        viewmodel.searchByMovieName("test")
+        verify(viewmodel).searchByMovieName("test")
     }
     @Test
     fun testGetAllList() {
-        viewmodel?.getAllList()
+        viewmodel.getAllList()
+        verify(viewmodel).getAllList()
     }
     @Test
     fun testCheckById() {
-        viewmodel?.checkById("model")
+        viewmodel.checkById("model")
+        verify(viewmodel).checkById("model")
     }
 
     @Test
     fun testGetPopularMovieList() {
-        viewmodel?.getAllList()
+        viewmodel.getAllList()
+        verify(viewmodel).getAllList()
     }
 
 }

@@ -57,6 +57,7 @@ dependencies {
     def dagger_compiler_version ="2.20"
     def picasso_version = "2.71828"
     def timber_version ="4.7.1"
+    def material_version = '1.4.0'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.6.0'
@@ -115,9 +116,12 @@ dependencies {
     //mockito
     testImplementation("androidx.test:core:$mockito_test_core")
     testImplementation("org.mockito:mockito-core:$mockito_core")
+    testImplementation("org.mockito:mockito-inline:2.8.47")
 
     //timber
     implementation "com.jakewharton.timber:timber:$timber_version"
 
+    //google material
+    implementation "com.google.android.material:material:$material_version"
 
 }

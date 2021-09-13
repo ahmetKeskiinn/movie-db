@@ -18,7 +18,6 @@ class RoomDatabaseModule(val application: Application) {
     private val databaseCallback = object : RoomDatabase.Callback() {
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
-            Log.d("RoomDatabaseModule", "onCreate")
             CoroutineScope(Dispatchers.IO).launch {
                 addSampleBooksToDatabase()
             }
@@ -26,7 +25,7 @@ class RoomDatabaseModule(val application: Application) {
     }
 
     private fun addSampleBooksToDatabase() {
-    }
+    }//burayı fragmente al oncreate view'da çağır
 
     @Singleton
     @Provides

@@ -38,9 +38,8 @@ class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) 
             for (i in 0..it.size - 1) {
                 list.add(it.get(i).name)
             }
-        })
+        })//değişecek
     }
-    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
         holder.view.movieModel = getItem(position)
         checkFollowFromDB(getItem(position)?.title.toString(),holder.followMovie)
@@ -49,8 +48,6 @@ class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) 
                val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(this!!.id!!)
                Navigation.findNavController(it).navigate(action)
            }
-
-
         }
     }
 

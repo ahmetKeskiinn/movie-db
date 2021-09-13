@@ -15,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.util.*
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 @Module
 class NetworkModule (private val application: Application) {
