@@ -84,7 +84,7 @@ class HomeFragment : Fragment() {
 
     private fun initialRecyclerView() {
         recyclerAdapter = PopularListAdapter { clickedFav ->
-           homeViewModel.checkById(FavModel(clickedFav.id.toString(),clickedFav.title.toString()),this)
+           homeViewModel.checkById(FavModel(clickedFav.movieNumb.toString(),clickedFav.title.toString()),this)
         }
         binding.homeRecycler.apply {
             layoutManager = LinearLayoutManager(this.context)
@@ -101,6 +101,7 @@ class HomeFragment : Fragment() {
     }
     private fun observeData(){
         homeViewModel.getPopularMovieList().observe(viewLifecycleOwner) {
+            Log.d("TAG", "observeData: " + it)
             recyclerAdapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
     }

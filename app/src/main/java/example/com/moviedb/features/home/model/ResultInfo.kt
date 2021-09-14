@@ -1,21 +1,20 @@
 package example.com.moviedb.features.home.model
 
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "fav")
 class ResultInfo {
+        @PrimaryKey
         @SerializedName("id")
-        @Expose
-        var id: Int? = null
-
-        @SerializedName("overview")
-        @Expose
+        var movieNumb: Int? = null
         var overview: String? = null
-
-        @SerializedName("title")
-        @Expose
         var title: String? = null
-
         var isFav:Boolean? = null
+
+
+
 }

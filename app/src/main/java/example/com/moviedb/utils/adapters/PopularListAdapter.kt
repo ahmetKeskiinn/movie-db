@@ -1,6 +1,7 @@
 package example.com.moviedb.utils.adapters
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -39,7 +40,7 @@ class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) 
         checkFollowFromDB(getItem(position)?.title.toString(),holder.followMovie)
         holder.itemView.setOnClickListener{
            with(getItem(position)){
-               val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(this!!.id!!)
+               val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(this!!.movieNumb!!)
                Navigation.findNavController(it).navigate(action)
            }
         }
