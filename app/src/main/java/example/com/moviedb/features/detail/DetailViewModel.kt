@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import example.com.moviedb.features.detail.model.Detail
 import example.com.moviedb.features.fav.db.FavRepository
 import example.com.moviedb.features.fav.model.FavModel
+import example.com.moviedb.features.home.model.ResultInfo
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,10 +20,10 @@ class DetailViewModel @Inject constructor(private val movieDetailSource: MovieDe
             }
         return data
         }
-    fun insertMovie(model:FavModel){
+    fun insertMovie(model:ResultInfo){
         repo.insertMovie(model)
     }
-    fun deleteMovie(model:FavModel){
+    fun deleteMovie(model:ResultInfo){
         repo.deleteMovie(model)
     }
     fun checkDB(id:String): LiveData<List<FavModel>>{

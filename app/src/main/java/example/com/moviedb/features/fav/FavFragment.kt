@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import example.com.moviedb.MyApp
 import example.com.moviedb.databinding.FragmentDashboardBinding
 import example.com.moviedb.features.fav.model.FavModel
+import example.com.moviedb.features.home.model.ResultInfo
 import example.com.moviedb.utils.ViewModelFactory
 import example.com.moviedb.utils.adapters.FavMoviesAdapter
 import javax.inject.Inject
@@ -42,7 +43,7 @@ class FavFragment : Fragment() {
         MyApp.appComponent.inject(this)
         favViewModel = ViewModelProviders.of(this, favViewModelFactory)[FavViewModel::class.java]
     }
-    private fun deleteFromDb(model: FavModel){
+    private fun deleteFromDb(model: ResultInfo){
         favViewModel.deleteMovie(model)
         observeData()
     }

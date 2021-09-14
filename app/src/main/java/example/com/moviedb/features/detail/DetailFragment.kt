@@ -13,6 +13,7 @@ import example.com.moviedb.BuildConfig
 import example.com.moviedb.MyApp
 import example.com.moviedb.databinding.FragmentDetailBinding
 import example.com.moviedb.features.fav.model.FavModel
+import example.com.moviedb.features.home.model.ResultInfo
 import example.com.moviedb.utils.ViewModelFactory
 import example.com.moviedb.utils.changeFollowingResource
 import example.com.moviedb.utils.updateWithUrl
@@ -58,29 +59,29 @@ class DetailFragment : Fragment() {
             if (it.size > 0) {
                 Log.d("TAG", "checkDB: " + it.size)
                 type = "followed"
-                dataBinding.insertButton.changeFollowingResource("followed", dataBinding.insertButton)
+            //    dataBinding.insertButton.changeFollowingResource("followed", dataBinding.insertButton)
             } else {
                 type = "unfollowed"
-                dataBinding.insertButton.changeFollowingResource("unfollowed", dataBinding.insertButton)
+              //  dataBinding.insertButton.changeFollowingResource("unfollowed", dataBinding.insertButton)
             }
         })
     }
-    private fun deleteFromDb(model:FavModel){
+    private fun deleteFromDb(model: ResultInfo){
        detailViewModel.deleteMovie(model)
     }
-    private fun insertFromDb(model:FavModel){
+    private fun insertFromDb(model:ResultInfo){
         detailViewModel.insertMovie(model)
     }
     private fun initialClickers(){
         dataBinding.insertButton.setOnClickListener {
            if(type.equals("followed")){
                checkDB(dataBinding.movie!!.id!!.toString())
-               deleteFromDb(FavModel(dataBinding.movie!!.id!!.toString(),dataBinding.movie!!.title.toString()))
+              // deleteFromDb(FavModel(dataBinding.movie!!.id!!.toString(),dataBinding.movie!!.title.toString()))
                type = "unfollowed"
            }
             else{
                 checkDB(dataBinding.movie!!.id!!.toString())
-                insertFromDb(FavModel(dataBinding.movie!!.id!!.toString(),dataBinding.movie!!.title.toString()))
+              //  insertFromDb(FavModel(dataBinding.movie!!.id!!.toString(),dataBinding.movie!!.title.toString()))
                 type = "followed"
            }
         }

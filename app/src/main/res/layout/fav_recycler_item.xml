@@ -7,7 +7,7 @@
     <data>
         <variable
             name="favModel"
-            type="example.com.moviedb.features.fav.model.FavModel" />
+            type="example.com.moviedb.features.home.model.ResultInfo" />
     </data>
     <LinearLayout
         android:background="@color/mainRecyclerColor"
@@ -21,7 +21,7 @@
             <TextView
                 android:id="@+id/movieName"
                 style="@style/recyclerItemText"
-                android:text="@{favModel.name}"
+                android:text="@{favModel.title}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

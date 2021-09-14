@@ -13,10 +13,11 @@ import example.com.moviedb.R
 import example.com.moviedb.databinding.FavRecyclerItemBinding
 import example.com.moviedb.features.fav.FavFragmentDirections
 import example.com.moviedb.features.fav.model.FavModel
+import example.com.moviedb.features.home.model.ResultInfo
 import example.com.moviedb.utils.changeFollowingResource
 
-class FavMoviesAdapter (private val onItemClickListener: (FavModel) -> Unit) :
-        ListAdapter<FavModel, FavMoviesAdapter.FavMovieHolder>(
+class FavMoviesAdapter (private val onItemClickListener: (ResultInfo) -> Unit) :
+        ListAdapter<ResultInfo, FavMoviesAdapter.FavMovieHolder>(
                 diffCallback
         ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavMovieHolder {
@@ -32,10 +33,10 @@ class FavMoviesAdapter (private val onItemClickListener: (FavModel) -> Unit) :
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: FavMovieHolder, position: Int) {
         holder.view.favModel = getItem(position)
-        holder.followMovie.changeFollowingResource("followed",holder.followMovie)
+        holder.followMovie.changeFollowingResource(getItem(position).isFav,holder.followMovie)
         holder.itemView.setOnClickListener{
             with(getItem(position)){
-                val action = FavFragmentDirections.actionNavigationFavoritesToDetailFragment(this.movieId.toInt())
+                val action = FavFragmentDirections.actionNavigationFavoritesToDetailFragment(this.movieNumb!!.toInt())
                 Navigation.findNavController(it).navigate(action)
             }
 
@@ -57,15 +58,15 @@ class FavMoviesAdapter (private val onItemClickListener: (FavModel) -> Unit) :
     }
 }
 
-private val diffCallback = object : DiffUtil.ItemCallback<FavModel>() {
-    override fun areItemsTheSame(oldItem: FavModel, newItem: FavModel): Boolean {
-        return oldItem.movieId.equals(newItem.movieId)
+private val diffCallback = object : DiffUtil.ItemCallback<ResultInfo>() {
+    override fun areItemsTheSame(oldItem: ResultInfo, newItem: ResultInfo): Boolean {
+        return oldItem.title.equals(newItem.title.toString())
     }
 
     override fun areContentsTheSame(
-            oldItem: FavModel,
-            newItem: FavModel
+            oldItem: ResultInfo,
+            newItem: ResultInfo
     ): Boolean {
-        return oldItem.name.equals(newItem.name) == true
+        return oldItem.title.equals(newItem.title) == true
     }
 }

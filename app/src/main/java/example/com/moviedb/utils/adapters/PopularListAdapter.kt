@@ -37,7 +37,7 @@ class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) 
 
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
         holder.view.movieModel = getItem(position)
-        checkFollowFromDB(getItem(position)?.title.toString(),holder.followMovie)
+        checkFollow(holder.followMovie,getItem(position))
         holder.itemView.setOnClickListener{
            with(getItem(position)){
                val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(this!!.movieNumb!!)
@@ -46,22 +46,22 @@ class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) 
         }
     }
 
-    private fun checkFollowFromDB(itemName: String, followMovie: ImageView) {
+    /*private fun checkFollowFromDB(itemName: String, followMovie: ImageView) {
         if(list.contains(itemName)){
             followMovie.changeFollowingResource("followed",followMovie)
         }
         else{
             followMovie.changeFollowingResource("unfollowed",followMovie)
         }
-    }
-    private fun checkFollow(followMovie: ImageView, selectedItem: String) {
-
-        if (list.contains(selectedItem)) {
-            followMovie.changeFollowingResource("unfollowed",followMovie)
-            list.remove(selectedItem)
-        } else {
-            followMovie.changeFollowingResource("followed",followMovie)
-            list.add(selectedItem)
+    }*/
+    private fun checkFollow(followMovie: ImageView, selectedMdel: ResultInfo?) {
+        if(selectedMdel?.isFav == true){
+            Log.d("TAG", "checkFollow:true ")
+            followMovie.changeFollowingResource(selectedMdel.isFav,followMovie)
+        }
+        else{
+            Log.d("TAG", "checkFollow:false ")
+            followMovie.changeFollowingResource(selectedMdel?.isFav,followMovie)
         }
     }
     fun getMovieAt(position: Int) = getItem(position)
@@ -73,7 +73,7 @@ class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) 
             followMovie.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION)
                     getItem(adapterPosition)?.let { it1 -> onItemClickListener(it1) }
-                    checkFollow(followMovie,getItem(adapterPosition)?.title.toString())
+                    checkFollow(followMovie,getItem(adapterPosition))
             }
         }
     }

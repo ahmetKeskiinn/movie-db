@@ -2,6 +2,7 @@ package example.com.moviedb.features.fav.db
 
 import androidx.lifecycle.LiveData
 import example.com.moviedb.features.fav.model.FavModel
+import example.com.moviedb.features.home.model.ResultInfo
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -11,16 +12,16 @@ class FavRepository(db: FavDatabase) {
 
     private var favDao: FavDAO = db.getFavDao()
 
-    fun insertMovie(model: FavModel) {
+    fun insertMovie(model: ResultInfo) {
         CoroutineScope(Dispatchers.IO).launch {
             favDao.addMovie(model)
         }
     }
-    fun getAllList() : LiveData<List<FavModel>> {
+    fun getAllList() : LiveData<List<ResultInfo>> {
          return favDao.getAllList()
     }
 
-    fun deleteMovie(model: FavModel) {
+    fun deleteMovie(model: ResultInfo) {
         CoroutineScope(Dispatchers.IO).launch {
             favDao.deleteMovie(model)
         }

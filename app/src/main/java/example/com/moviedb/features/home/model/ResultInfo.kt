@@ -14,7 +14,4 @@ class ResultInfo {
         var overview: String? = null
         var title: String? = null
         var isFav:Boolean? = null
-
-
-
 }

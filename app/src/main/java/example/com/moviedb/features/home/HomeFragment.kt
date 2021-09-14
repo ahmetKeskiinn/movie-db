@@ -84,7 +84,7 @@ class HomeFragment : Fragment() {
 
     private fun initialRecyclerView() {
         recyclerAdapter = PopularListAdapter { clickedFav ->
-           homeViewModel.checkById(FavModel(clickedFav.movieNumb.toString(),clickedFav.title.toString()),this)
+           homeViewModel.checkById(clickedFav,this)
         }
         binding.homeRecycler.apply {
             layoutManager = LinearLayoutManager(this.context)
@@ -101,7 +101,6 @@ class HomeFragment : Fragment() {
     }
     private fun observeData(){
         homeViewModel.getPopularMovieList().observe(viewLifecycleOwner) {
-            Log.d("TAG", "observeData: " + it)
             recyclerAdapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
     }
@@ -110,7 +109,6 @@ class HomeFragment : Fragment() {
             binding.gridButton.apply {
                 isClickable = false
                 setBackgroundColor(R.color.lightGray)
-              //  setBackgroundColor(Color.parseColor("#666bff"))
                 binding.homeRecycler.apply {
                     layoutManager = GridLayoutManager(this.context,2)
                 }
