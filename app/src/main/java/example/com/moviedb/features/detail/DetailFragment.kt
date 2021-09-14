@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import example.com.moviedb.BuildConfig
 import example.com.moviedb.MyApp
 import example.com.moviedb.databinding.FragmentDetailBinding
+import example.com.moviedb.features.detail.model.Detail
 import example.com.moviedb.features.fav.model.FavModel
 import example.com.moviedb.features.home.model.ResultInfo
 import example.com.moviedb.utils.ViewModelFactory
@@ -38,7 +39,6 @@ class DetailFragment : Fragment() {
         arguments?.let {
             observeData(it)
         }
-        initialClickers()
     }
 
     private fun initialVM(){
@@ -47,43 +47,24 @@ class DetailFragment : Fragment() {
     }
     private fun observeData(bundle: Bundle){
         detailViewModel.getMovieDetail(DetailFragmentArgs.fromBundle(bundle).movieId).observe(
-            viewLifecycleOwner,
-            Observer {
-                dataBinding.movie = it
-                dataBinding.imageView.updateWithUrl(BuildConfig.IMAGE_BASE_URL+it.posterPath.toString(),dataBinding.imageView)
-                checkDB(it.id.toString())
-            })
+                viewLifecycleOwner,
+                Observer {
+                    dataBinding.movie = it
+
+                    dataBinding.imageView.updateWithUrl(BuildConfig.IMAGE_BASE_URL + it.posterPath.toString(), dataBinding.imageView)
+                    initialClickers(it)
+                    checkDB(it)
+                })
     }
-    private fun checkDB(id:String){
-        detailViewModel.checkDB(id).observe(viewLifecycleOwner, Observer {
-            if (it.size > 0) {
-                Log.d("TAG", "checkDB: " + it.size)
-                type = "followed"
-            //    dataBinding.insertButton.changeFollowingResource("followed", dataBinding.insertButton)
-            } else {
-                type = "unfollowed"
-              //  dataBinding.insertButton.changeFollowingResource("unfollowed", dataBinding.insertButton)
-            }
-        })
+    private fun checkDB(model: Detail){
+        detailViewModel.checkDB(this,model,dataBinding.insertButton)
     }
-    private fun deleteFromDb(model: ResultInfo){
-       detailViewModel.deleteMovie(model)
+    private fun insertDeleteDb(model: Detail,imageview:ImageView){
+        detailViewModel.insertDeleteDB(this,model,imageview)
     }
-    private fun insertFromDb(model:ResultInfo){
-        detailViewModel.insertMovie(model)
-    }
-    private fun initialClickers(){
+    private fun initialClickers(resultInfo: Detail){
         dataBinding.insertButton.setOnClickListener {
-           if(type.equals("followed")){
-               checkDB(dataBinding.movie!!.id!!.toString())
-              // deleteFromDb(FavModel(dataBinding.movie!!.id!!.toString(),dataBinding.movie!!.title.toString()))
-               type = "unfollowed"
-           }
-            else{
-                checkDB(dataBinding.movie!!.id!!.toString())
-              //  insertFromDb(FavModel(dataBinding.movie!!.id!!.toString(),dataBinding.movie!!.title.toString()))
-                type = "followed"
-           }
+            insertDeleteDb(resultInfo, dataBinding.insertButton)
         }
     }
 

@@ -7,11 +7,11 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "fav")
-class ResultInfo {
+data class ResultInfo (
         @PrimaryKey
         @SerializedName("id")
-        var movieNumb: Int? = null
-        var overview: String? = null
-        var title: String? = null
-        var isFav:Boolean? = null
-}
+        var movieNumb: Int? = null,
+        var overview: String? = null,
+        var title: String? = null,
+        var isFav:Boolean? = null,
+)
