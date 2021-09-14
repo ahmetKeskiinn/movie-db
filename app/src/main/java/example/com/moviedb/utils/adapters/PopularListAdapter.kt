@@ -33,13 +33,7 @@ class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) 
         )
         return MovieHolder(view)
     }
-    fun PopularListAdapter(favViewModel: HomeViewModel, homeFragment:HomeFragment){
-        favViewModel.getAllList().observe(homeFragment, Observer {
-            for (i in 0..it.size - 1) {
-                list.add(it.get(i).name)
-            }
-        })//değişecek
-    }
+
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
         holder.view.movieModel = getItem(position)
         checkFollowFromDB(getItem(position)?.title.toString(),holder.followMovie)

@@ -86,7 +86,6 @@ class HomeFragment : Fragment() {
         recyclerAdapter = PopularListAdapter { clickedFav ->
            homeViewModel.checkById(FavModel(clickedFav.id.toString(),clickedFav.title.toString()),this)
         }
-        recyclerAdapter.PopularListAdapter(homeViewModel, this)
         binding.homeRecycler.apply {
             layoutManager = LinearLayoutManager(this.context)
             setHasFixedSize(true)
