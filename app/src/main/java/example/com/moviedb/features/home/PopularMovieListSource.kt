@@ -1,7 +1,10 @@
 package example.com.moviedb.features.home
 
 import androidx.lifecycle.LiveData
-import androidx.paging.*
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
 import example.com.moviedb.features.home.model.ResultInfo
 import example.com.moviedb.utils.GetService
 import javax.inject.Inject

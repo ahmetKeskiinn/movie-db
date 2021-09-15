@@ -1,6 +1,9 @@
 package example.com.moviedb.features.home
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.paging.PagingData
 import example.com.moviedb.features.fav.db.FavRepository
 import example.com.moviedb.features.home.model.ResultInfo
