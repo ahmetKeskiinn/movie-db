@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import androidx.paging.PagingData
 import example.com.moviedb.features.fav.db.FavRepository
 import example.com.moviedb.features.home.model.ResultInfo
+import example.com.moviedb.utils.GetPopularDB
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(private val popularMovieList: PopularMovieListSource, private val repo:FavRepository) : ViewModel()  {
@@ -17,6 +18,9 @@ class HomeViewModel @Inject constructor(private val popularMovieList: PopularMov
     }
     fun searchByMovieName(movieName: String) :LiveData<PagingData<ResultInfo>>{
         return popularMovieList.getSearchList(movieName)
+    }
+    fun getDbList(): LiveData<List<ResultInfo>> {
+        return repo.getAllList()
     }
 
     fun checkById(model: ResultInfo, viewLifecycleOwner:LifecycleOwner){

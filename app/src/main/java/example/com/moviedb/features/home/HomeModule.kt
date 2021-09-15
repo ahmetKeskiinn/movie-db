@@ -6,17 +6,20 @@ import dagger.Module
 import dagger.Provides
 import dagger.Reusable
 import dagger.multibindings.IntoMap
+import example.com.moviedb.utils.GetPopularDB
 import example.com.moviedb.utils.GetService
 import example.com.moviedb.utils.ViewModelKey
+import javax.inject.Singleton
 
 @Module
 class HomeModule {
     @Provides
-    @Reusable
+    @Singleton
     internal fun providePopularMovies(api: GetService, homePagingSource: HomePagingSource): PopularMovieListSource = PopularMovieListSource(api,homePagingSource)
     @Provides
-    @Reusable
+    @Singleton
     internal fun providePagingMovies(api: GetService): HomePagingSource = HomePagingSource( api )
+
 }
 @Module
 abstract class HomeViewModelModule{

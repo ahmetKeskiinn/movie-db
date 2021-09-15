@@ -66,11 +66,15 @@ class HomeFragment : Fragment() {
                     }
 
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                        if (s?.length!! > 2) {
-                            observeTextWatcherData(s.toString())
+                        if (s != null) {
+                            if (s.length > 2) {
+                                observeTextWatcherData(s.toString())
+                            }
                         }
-                        if (s.length == 0) {
-                            observeData()
+                        if (s != null) {
+                            if (s.length == 0) {
+                                observeData()
+                            }
                         }
                     }
                 })
@@ -83,9 +87,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun initialRecyclerView() {
-        recyclerAdapter = PopularListAdapter { clickedFav ->
-           homeViewModel.checkById(clickedFav,this)
-        }
+            recyclerAdapter = PopularListAdapter { clickedFav ->
+                homeViewModel.checkById(clickedFav,this)
+            }
         binding.homeRecycler.apply {
             layoutManager = LinearLayoutManager(this.context)
             setHasFixedSize(true)

@@ -8,12 +8,13 @@ import dagger.Reusable
 import dagger.multibindings.IntoMap
 import example.com.moviedb.utils.GetService
 import example.com.moviedb.utils.ViewModelKey
+import javax.inject.Singleton
 
 @Module
 class DetailModule {
 
     @Provides
-    @Reusable
+    @Singleton
     internal fun provideDetailMovies(detailApi: GetService): MovieDetailSource = MovieDetailSource(detailApi)
 }
 @Module

@@ -21,7 +21,7 @@ import javax.inject.Singleton
 class NetworkModule (private val application: Application) {
 
     @Provides
-    @Reusable
+    @Singleton
     internal fun provideOkHttpClient(): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BASIC
@@ -38,7 +38,7 @@ class NetworkModule (private val application: Application) {
             .build() }
 
     @Provides
-    @Reusable
+    @Singleton
     internal fun provideRetrofitInterface(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
@@ -47,7 +47,7 @@ class NetworkModule (private val application: Application) {
         .build()
 
     @Provides
-    @Reusable
+    @Singleton
     internal fun provideMovieApi(retrofit: Retrofit): GetService = retrofit.create(GetService::class.java)
 
 

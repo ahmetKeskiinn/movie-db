@@ -36,11 +36,12 @@ class FavMoviesAdapter (private val onItemClickListener: (ResultInfo) -> Unit) :
         holder.followMovie.changeFollowingResource(getItem(position).isFav,holder.followMovie)
         holder.itemView.setOnClickListener{
             with(getItem(position)){
-                val action = FavFragmentDirections.actionNavigationFavoritesToDetailFragment(this.movieNumb!!.toInt())
-                Navigation.findNavController(it).navigate(action)
+                val movieID = this.movieNumb
+                if(movieID!=null){
+                    val action = FavFragmentDirections.actionNavigationFavoritesToDetailFragment(movieID)
+                    Navigation.findNavController(it).navigate(action)
+                }
             }
-
-
         }
     }
 
