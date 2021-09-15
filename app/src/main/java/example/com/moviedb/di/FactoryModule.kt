@@ -1,6 +1,5 @@
 package example.com.moviedb.di
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module

@@ -4,9 +4,7 @@ import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import dagger.Reusable
 import dagger.multibindings.IntoMap
-import example.com.moviedb.utils.GetPopularDB
 import example.com.moviedb.utils.GetService
 import example.com.moviedb.utils.ViewModelKey
 import javax.inject.Singleton
@@ -15,14 +13,13 @@ import javax.inject.Singleton
 class HomeModule {
     @Provides
     @Singleton
-    internal fun providePopularMovies(api: GetService, homePagingSource: HomePagingSource): PopularMovieListSource = PopularMovieListSource(api,homePagingSource)
+    internal fun providePopularMovies(api: GetService, homePagingSource: HomePagingSource): PopularMovieListSource = PopularMovieListSource(api, homePagingSource)
     @Provides
     @Singleton
-    internal fun providePagingMovies(api: GetService): HomePagingSource = HomePagingSource( api )
-
+    internal fun providePagingMovies(api: GetService): HomePagingSource = HomePagingSource(api)
 }
 @Module
-abstract class HomeViewModelModule{
+abstract class HomeViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(HomeViewModel::class)

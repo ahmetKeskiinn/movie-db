@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import example.com.moviedb.MyApp
 import example.com.moviedb.databinding.FragmentDashboardBinding
-import example.com.moviedb.features.fav.model.FavModel
 import example.com.moviedb.features.home.model.ResultInfo
 import example.com.moviedb.utils.ViewModelFactory
 import example.com.moviedb.utils.adapters.FavMoviesAdapter
@@ -19,18 +18,17 @@ import javax.inject.Inject
 class FavFragment : Fragment() {
 
     private lateinit var favViewModel: FavViewModel
-    private lateinit var binding:FragmentDashboardBinding
-    private lateinit var recyclerAdapter : FavMoviesAdapter
+    private lateinit var binding: FragmentDashboardBinding
+    private lateinit var recyclerAdapter: FavMoviesAdapter
     @Inject
     lateinit var favViewModelFactory: ViewModelFactory
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        binding= FragmentDashboardBinding.inflate(inflater, container, false)
+        binding = FragmentDashboardBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,15 +37,15 @@ class FavFragment : Fragment() {
         initialRecyclerView()
         observeData()
     }
-    private fun initialVM(){
+    private fun initialVM() {
         MyApp.appComponent.inject(this)
         favViewModel = ViewModelProviders.of(this, favViewModelFactory)[FavViewModel::class.java]
     }
-    private fun deleteFromDb(model: ResultInfo){
+    private fun deleteFromDb(model: ResultInfo) {
         favViewModel.deleteMovie(model)
         observeData()
     }
-    private fun initialRecyclerView(){
+    private fun initialRecyclerView() {
         recyclerAdapter = FavMoviesAdapter { clickedFav ->
             deleteFromDb(clickedFav)
         }
@@ -57,10 +55,12 @@ class FavFragment : Fragment() {
             adapter = recyclerAdapter
         }
     }
-    private fun observeData(){
-        favViewModel.getAllList().observe(viewLifecycleOwner, Observer {
-            recyclerAdapter.submitList(it)
-        })
+    private fun observeData() {
+        favViewModel.getAllList().observe(
+            viewLifecycleOwner,
+            Observer {
+                recyclerAdapter.submitList(it)
+            }
+        )
     }
-
 }

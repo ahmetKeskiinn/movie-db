@@ -6,7 +6,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-
 class MovieDetailSource @Inject constructor(private val api: GetService) {
     suspend fun getDetailForMovie(id: Int): Detail = withContext(Dispatchers.IO) {
         val movieDetail = api.getSelectedMovie(id)

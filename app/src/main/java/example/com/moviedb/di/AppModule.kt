@@ -5,7 +5,6 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-
 @Module
 class AppModule(val app: Application) {
     @Provides
@@ -13,5 +12,4 @@ class AppModule(val app: Application) {
     fun providesApplication(): Application {
         return app
     }
-
 }

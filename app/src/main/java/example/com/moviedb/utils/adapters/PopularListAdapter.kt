@@ -11,11 +11,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import example.com.moviedb.R
 import example.com.moviedb.databinding.HomeRecyclerItemBinding
-import example.com.moviedb.features.home.HomeFragment
 import example.com.moviedb.features.home.HomeFragmentDirections
-import example.com.moviedb.features.home.HomeViewModel
 import example.com.moviedb.features.home.model.ResultInfo
-import example.com.moviedb.utils.GetPopularDB
 import example.com.moviedb.utils.changeFollowingResource
 
 class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) :
@@ -38,17 +35,16 @@ class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) 
     }
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
         holder.view.movieModel = getItem(position)
-        checkFollow(holder.followMovie,getItem(position))
+        checkFollow(holder.followMovie, getItem(position))
         Log.d("TAG", "onBindViewHolder: ")
-        holder.itemView.setOnClickListener{
-           with(getItem(position)){
-               val movieID = this?.movieNumb
-               if(movieID!=null){
-                   val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(movieID)
-                   Navigation.findNavController(it).navigate(action)
-               }
-
-           }
+        holder.itemView.setOnClickListener {
+            with(getItem(position)) {
+                val movieID = this?.movieNumb
+                if (movieID != null) {
+                    val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(movieID)
+                    Navigation.findNavController(it).navigate(action)
+                }
+            }
         }
     }
 
@@ -61,13 +57,12 @@ class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) 
         }
     }*/
     private fun checkFollow(followMovie: ImageView, selectedMdel: ResultInfo?) {
-        if(selectedMdel?.isFav == true){
+        if (selectedMdel?.isFav == true) {
             Log.d("TAG", "checkFollow:true ")
-            followMovie.changeFollowingResource(selectedMdel.isFav,followMovie)
-        }
-        else{
+            followMovie.changeFollowingResource(selectedMdel.isFav, followMovie)
+        } else {
             Log.d("TAG", "checkFollow:false ")
-            followMovie.changeFollowingResource(selectedMdel?.isFav,followMovie)
+            followMovie.changeFollowingResource(selectedMdel?.isFav, followMovie)
         }
     }
     fun getMovieAt(position: Int) = getItem(position)
@@ -79,8 +74,10 @@ class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) 
             Log.d("TAG", "init: ")
             followMovie.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION)
-                    getItem(adapterPosition)?.let { it1 -> onItemClickListener(it1) }
-                    checkFollow(followMovie,getItem(adapterPosition))
+                    getItem(adapterPosition)?.let { it1 ->
+                        onItemClickListener(it1)
+                    }
+                checkFollow(followMovie, getItem(adapterPosition))
             }
         }
     }

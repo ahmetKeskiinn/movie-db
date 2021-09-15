@@ -2,7 +2,6 @@ package example.com.moviedb.features.fav.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import example.com.moviedb.features.fav.model.FavModel
 import example.com.moviedb.features.home.model.ResultInfo
 
 @Dao

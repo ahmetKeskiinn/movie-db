@@ -4,7 +4,6 @@ import android.app.Application
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
-import dagger.Reusable
 import example.com.moviedb.BuildConfig
 import example.com.moviedb.utils.GetService
 import okhttp3.Cache
@@ -18,7 +17,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
-class NetworkModule (private val application: Application) {
+class NetworkModule(private val application: Application) {
 
     @Provides
     @Singleton
@@ -30,12 +29,14 @@ class NetworkModule (private val application: Application) {
         val cache = Cache(cacheDir, 15 * 1024 * 1024)
         return OkHttpClient.Builder()
             .cache(
-                cache)
+                cache
+            )
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
             .addInterceptor(interceptor)
-            .build() }
+            .build()
+    }
 
     @Provides
     @Singleton
@@ -49,6 +50,4 @@ class NetworkModule (private val application: Application) {
     @Provides
     @Singleton
     internal fun provideMovieApi(retrofit: Retrofit): GetService = retrofit.create(GetService::class.java)
-
-
 }

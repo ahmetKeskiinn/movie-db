@@ -1,9 +1,7 @@
 package example.com.moviedb.features.detail.model
 
 import com.google.gson.annotations.Expose
-
 import com.google.gson.annotations.SerializedName
-
 
 class Genre {
     @SerializedName("id")

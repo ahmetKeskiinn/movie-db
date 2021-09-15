@@ -9,24 +9,22 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-
 private const val FIRST_PAGE_INDEX = 1
 
 class HomePagingSource @Inject constructor(val apiService: GetService) : PagingSource<Int, ResultInfo>() {
-    var key:String = ""
+    var key: String = ""
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ResultInfo> {
         return try {
             val position: Int = params.key ?: FIRST_PAGE_INDEX
-            val response =if(key.isEmpty()){
+            val response = if (key.isEmpty()) {
                 apiService.getPopularMovieList(
-                        BuildConfig.API_KEY,
-                        position
+                    BuildConfig.API_KEY,
+                    position
                 )
-            }
-            else{
+            } else {
                 apiService.getSearchedList(
-                        BuildConfig.API_KEY,
-                        key
+                    BuildConfig.API_KEY,
+                    key
                 )
             }
             val popularMovies = response.results
@@ -45,5 +43,4 @@ class HomePagingSource @Inject constructor(val apiService: GetService) : PagingS
     override fun getRefreshKey(state: PagingState<Int, ResultInfo>): Int? {
         TODO("Not yet implemented")
     }
-
 }

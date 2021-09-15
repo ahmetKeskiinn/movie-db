@@ -1,9 +1,7 @@
 package example.com.moviedb.features.fav.db
 
 import androidx.lifecycle.LiveData
-import example.com.moviedb.features.fav.model.FavModel
 import example.com.moviedb.features.home.model.ResultInfo
-
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,8 +15,8 @@ class FavRepository(db: FavDatabase) {
             favDao.addMovie(model)
         }
     }
-    fun getAllList() : LiveData<List<ResultInfo>> {
-         return favDao.getAllList()
+    fun getAllList(): LiveData<List<ResultInfo>> {
+        return favDao.getAllList()
     }
 
     fun deleteMovie(model: ResultInfo) {
@@ -26,7 +24,7 @@ class FavRepository(db: FavDatabase) {
             favDao.deleteMovie(model)
         }
     }
-    fun checkById(id:String): LiveData<List<ResultInfo>> {
+    fun checkById(id: String): LiveData<List<ResultInfo>> {
         return favDao.checkById(id)
     }
 }

@@ -1,7 +1,6 @@
 package example.com.moviedb.di
 
 import android.app.Application
-import android.util.Log
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
@@ -25,17 +24,15 @@ class RoomDatabaseModule(val application: Application) {
     }
 
     private fun addSampleBooksToDatabase() {
-    }//burayı fragmente al oncreate view'da çağır
+    } // burayı fragmente al oncreate view'da çağır
 
     @Singleton
     @Provides
     fun providesRoomDatabase(): FavDatabase {
-       val db = Room.databaseBuilder(application, FavDatabase::class.java, "fav_db")
+        val db = Room.databaseBuilder(application, FavDatabase::class.java, "fav_db")
             .fallbackToDestructiveMigration()
             .addCallback(databaseCallback)
             .build()
         return db
     }
-
-
 }
