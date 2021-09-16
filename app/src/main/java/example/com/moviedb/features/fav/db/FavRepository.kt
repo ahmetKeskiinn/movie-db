@@ -18,7 +18,6 @@ class FavRepository(db: FavDatabase) {
     fun getAllList(): LiveData<List<ResultInfo>> {
         return favDao.getAllList()
     }
-
     fun deleteMovie(model: ResultInfo) {
         CoroutineScope(Dispatchers.IO).launch {
             favDao.deleteMovie(model)

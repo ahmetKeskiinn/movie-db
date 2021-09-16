@@ -9,17 +9,20 @@ import android.view.ViewGroup
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import example.com.moviedb.MyApp
 import example.com.moviedb.R
 import example.com.moviedb.databinding.FragmentHomeBinding
+import example.com.moviedb.features.home.model.ResultInfo
+import example.com.moviedb.utils.ClickListener
 import example.com.moviedb.utils.ViewModelFactory
 import example.com.moviedb.utils.adapters.PopularListAdapter
 import javax.inject.Inject
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), ClickListener {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var homeViewModel: HomeViewModel
@@ -43,6 +46,7 @@ class HomeFragment : Fragment() {
         observeData()
         initialTextWatcher()
         initialLayoutManagers()
+        getDbList()
     }
     private fun initialUI() {
         MyApp.appComponent.inject(this)
@@ -81,18 +85,26 @@ class HomeFragment : Fragment() {
     private fun initialVM() {
         homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
     }
-
     private fun initialRecyclerView() {
-        recyclerAdapter = PopularListAdapter { clickedFav ->
-            homeViewModel.checkById(clickedFav, this)
-        }
+        recyclerAdapter = PopularListAdapter(this, LinearLayoutManager(this.context))
         binding.homeRecycler.apply {
             layoutManager = LinearLayoutManager(this.context)
             setHasFixedSize(true)
             adapter = recyclerAdapter
         }
     }
-
+    private fun getDbList() {
+        homeViewModel.list1.observe(
+                viewLifecycleOwner,
+                Observer {
+            var listt: ArrayList<Int?> = ArrayList()
+            for (i in 0..it.size - 1) {
+                listt.add(it.get(i).movieNumb)
+            }
+            recyclerAdapter.dbLists(listt)
+        }
+        )
+    }
     private fun observeTextWatcherData(movieName: String) {
         homeViewModel.searchByMovieName(movieName).observe(viewLifecycleOwner) {
             recyclerAdapter.submitData(viewLifecycleOwner.lifecycle, it)
@@ -131,9 +143,11 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
     override fun onStop() {
         super.onStop()
         binding.searchMovie.setText("")
+    }
+    override fun itemClick(data: ResultInfo) {
+        homeViewModel.checkById(data, this)
     }
 }

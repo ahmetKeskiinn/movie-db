@@ -1,24 +1,30 @@
 package example.com.moviedb.utils.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import example.com.moviedb.R
 import example.com.moviedb.databinding.HomeRecyclerItemBinding
 import example.com.moviedb.features.home.HomeFragmentDirections
 import example.com.moviedb.features.home.model.ResultInfo
+import example.com.moviedb.utils.ClickListener
 import example.com.moviedb.utils.changeFollowingResource
 
-class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) :
+class PopularListAdapter(
+        private val listener: ClickListener,
+                         private val layoutManager: LinearLayoutManager
+                         ) :
     PagingDataAdapter<ResultInfo, PopularListAdapter.MovieHolder>(
         diffCallback
     ) {
+    lateinit var dbList: List<Int?>
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = DataBindingUtil.inflate<HomeRecyclerItemBinding>(
@@ -29,55 +35,48 @@ class PopularListAdapter(private val onItemClickListener: (ResultInfo) -> Unit) 
         )
         return MovieHolder(view)
     }
-
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        super.onAttachedToRecyclerView(recyclerView)
-    }
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
         holder.view.movieModel = getItem(position)
-        checkFollow(holder.followMovie, getItem(position))
-        Log.d("TAG", "onBindViewHolder: ")
-        holder.itemView.setOnClickListener {
-            with(getItem(position)) {
-                val movieID = this?.movieNumb
-                if (movieID != null) {
-                    val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(movieID)
-                    Navigation.findNavController(it).navigate(action)
-                }
-            }
+        checkFollow1(holder.followMovie, getItem(position)?.movieNumb)
+    }
+    private fun checkFollow1(followMovie: ImageView, selectedMdel: Int?) {
+        if (dbList.contains(selectedMdel)) {
+            followMovie.changeFollowingResource(true, followMovie)
+        } else {
+            followMovie.changeFollowingResource(false, followMovie)
         }
     }
-
-    /*private fun checkFollowFromDB(itemName: String, followMovie: ImageView) {
-        if(list.contains(itemName)){
-            followMovie.changeFollowingResource("followed",followMovie)
-        }
-        else{
-            followMovie.changeFollowingResource("unfollowed",followMovie)
-        }
-    }*/
     private fun checkFollow(followMovie: ImageView, selectedMdel: ResultInfo?) {
         if (selectedMdel?.isFav == true) {
-            Log.d("TAG", "checkFollow:true ")
+            selectedMdel.isFav = false
             followMovie.changeFollowingResource(selectedMdel.isFav, followMovie)
         } else {
-            Log.d("TAG", "checkFollow:false ")
+            selectedMdel?.isFav = true
             followMovie.changeFollowingResource(selectedMdel?.isFav, followMovie)
         }
     }
+    fun dbLists(modelList: List<Int?>) {
+        this.dbList = modelList
+    }
     fun getMovieAt(position: Int) = getItem(position)
-    inner class MovieHolder(var view: HomeRecyclerItemBinding) :
-        RecyclerView.ViewHolder(view.root) {
-        val followMovie: ImageView = itemView.findViewById(R.id.followUnfollowStar)
 
+    inner class MovieHolder(var view: HomeRecyclerItemBinding) :
+        RecyclerView.ViewHolder(view.root), View.OnClickListener {
+        val followMovie: ImageView = itemView.findViewById(R.id.followUnfollowStar)
         init {
-            Log.d("TAG", "init: ")
-            followMovie.setOnClickListener {
+            view.root.findViewById<ImageView>(R.id.followUnfollowStar).setOnClickListener(this)
+            view.root.setOnClickListener(this)
+        }
+        override fun onClick(v: View?) {
+            if (v == followMovie) {
                 if (adapterPosition != RecyclerView.NO_POSITION)
                     getItem(adapterPosition)?.let { it1 ->
-                        onItemClickListener(it1)
+                        listener.itemClick(it1)
                     }
                 checkFollow(followMovie, getItem(adapterPosition))
+            } else {
+                val action = getItem(adapterPosition)?.movieNumb?.let { HomeFragmentDirections.actionNavigationHomeToDetailFragment(it) }
+                action?.let { Navigation.findNavController(view.root).navigate(it) }
             }
         }
     }
