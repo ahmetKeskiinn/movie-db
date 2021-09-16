@@ -116,31 +116,15 @@ class HomeFragment : Fragment(), ClickListener {
         }
     }
     private fun initialLayoutManagers() {
-        binding.gridButton.setOnClickListener {
-            binding.gridButton.apply {
-                isClickable = false
-                setBackgroundColor(R.color.lightGray)
-                binding.homeRecycler.apply {
-                    layoutManager = GridLayoutManager(this.context, 2)
-                }
-            }
-            binding.listButton.apply {
-                isClickable = true
-                setBackgroundColor(R.color.white)
-            }
-        }
         binding.listButton.setOnClickListener {
-            binding.gridButton.apply {
-                isClickable = true
-                setBackgroundColor(R.color.white)
-            }
-            binding.listButton.apply {
-                isClickable = false
-                setBackgroundColor(R.color.lightGray)
-                binding.homeRecycler.apply {
+            binding.homeRecycler.apply {
                     layoutManager = LinearLayoutManager(this.context)
                 }
-            }
+        }
+        binding.gridButton.setOnClickListener {
+            binding.homeRecycler.apply {
+                    layoutManager = GridLayoutManager(this.context, 2)
+                }
         }
     }
     override fun onStop() {
