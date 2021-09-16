@@ -18,9 +18,9 @@ import example.com.moviedb.utils.ClickListener
 import example.com.moviedb.utils.changeFollowingResource
 
 class PopularListAdapter(
-        private val listener: ClickListener,
-                         private val layoutManager: LinearLayoutManager
-                         ) :
+    private val listener: ClickListener,
+    private val layoutManager: LinearLayoutManager
+) :
     PagingDataAdapter<ResultInfo, PopularListAdapter.MovieHolder>(
         diffCallback
     ) {

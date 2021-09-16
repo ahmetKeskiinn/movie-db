@@ -10,8 +10,6 @@ import example.com.moviedb.features.home.model.ResultInfo
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(private val popularMovieList: PopularMovieListSource, private val repo: FavRepository) : ViewModel() {
-    var list: LiveData<PagingData<ResultInfo>> = getPopularMovieList()
-    var list1: LiveData<List<ResultInfo>> = getDbList()
     fun insertMovie(model: ResultInfo) {
         model.isFav = true
         repo.insertMovie(model)

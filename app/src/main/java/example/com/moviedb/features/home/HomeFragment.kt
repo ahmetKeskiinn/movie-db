@@ -94,15 +94,15 @@ class HomeFragment : Fragment(), ClickListener {
         }
     }
     private fun getDbList() {
-        homeViewModel.list1.observe(
-                viewLifecycleOwner,
-                Observer {
-            var listt: ArrayList<Int?> = ArrayList()
-            for (i in 0..it.size - 1) {
-                listt.add(it.get(i).movieNumb)
+        homeViewModel.getDbList().observe(
+            viewLifecycleOwner,
+            Observer {
+                var listt: ArrayList<Int?> = ArrayList()
+                for (i in 0..it.size - 1) {
+                    listt.add(it.get(i).movieNumb)
+                }
+                recyclerAdapter.dbLists(listt)
             }
-            recyclerAdapter.dbLists(listt)
-        }
         )
     }
     private fun observeTextWatcherData(movieName: String) {
