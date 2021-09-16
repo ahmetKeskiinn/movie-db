@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import example.com.moviedb.MyApp
 import example.com.moviedb.databinding.FragmentDashboardBinding
@@ -35,6 +36,7 @@ class FavFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initialVM()
         initialRecyclerView()
+        initialLayoutManagers()
         observeData()
     }
     private fun initialVM() {
@@ -53,6 +55,18 @@ class FavFragment : Fragment() {
             layoutManager = LinearLayoutManager(this.context)
             setHasFixedSize(true)
             adapter = recyclerAdapter
+        }
+    }
+    private fun initialLayoutManagers() {
+        binding.listButton.setOnClickListener {
+            binding.favRecycler.apply {
+                layoutManager = LinearLayoutManager(this.context)
+            }
+        }
+        binding.gridButton.setOnClickListener {
+            binding.favRecycler.apply {
+                layoutManager = GridLayoutManager(this.context, 2)
+            }
         }
     }
     private fun observeData() {

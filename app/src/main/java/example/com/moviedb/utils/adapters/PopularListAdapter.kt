@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import example.com.moviedb.BuildConfig
 import example.com.moviedb.R
@@ -40,8 +39,8 @@ class PopularListAdapter(
     }
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
         holder.view.movieModel = getItem(position)
-        holder.imageMovie.updateWithUrl(BuildConfig.IMAGE_BASE_URL+holder.view.movieModel?.posterPath, holder.imageMovie)
-        checkFollow1(holder.followMovie, getItem(position)?.movieNumb,position)
+        holder.imageMovie.updateWithUrl(BuildConfig.IMAGE_BASE_URL + holder.view.movieModel?.posterPath, holder.imageMovie)
+        checkFollow1(holder.followMovie, getItem(position)?.movieNumb, position)
     }
     private fun checkFollow1(followMovie: ImageView, selectedMdel: Int?, position: Int) {
         if (dbList.contains(selectedMdel)) {
@@ -79,13 +78,12 @@ class PopularListAdapter(
                         listener.itemClick(it1)
                     }
                 var model = getItem(adapterPosition)
-                if(model?.isFav==true){
+                if (model?.isFav == true) {
                     model.isFav = false
-                }
-                else{
+                } else {
                     model?.isFav = true
                 }
-                    checkFollow(followMovie, model)
+                checkFollow(followMovie, model)
             } else {
                 val action = getItem(adapterPosition)?.movieNumb?.let { HomeFragmentDirections.actionNavigationHomeToDetailFragment(it) }
                 action?.let { Navigation.findNavController(view.root).navigate(it) }

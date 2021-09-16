@@ -50,7 +50,7 @@ class DetailViewModel @Inject constructor(private val movieDetailSource: MovieDe
             Observer {
                 if (it.size == 0 && a == 0) {
                     a = 1
-                    val model1 = ResultInfo(model.id, model.overview, model.title, model.posterPath,true)
+                    val model1 = ResultInfo(model.id, model.overview, model.title, model.posterPath, true)
                     insertMovie(model1)
                     imageviewChange(model1.isFav, imageView)
                 } else {

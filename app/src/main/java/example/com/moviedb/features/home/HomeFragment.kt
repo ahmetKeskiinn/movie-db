@@ -14,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import example.com.moviedb.MyApp
-import example.com.moviedb.R
 import example.com.moviedb.databinding.FragmentHomeBinding
 import example.com.moviedb.features.home.model.ResultInfo
 import example.com.moviedb.utils.ClickListener
@@ -118,13 +117,13 @@ class HomeFragment : Fragment(), ClickListener {
     private fun initialLayoutManagers() {
         binding.listButton.setOnClickListener {
             binding.homeRecycler.apply {
-                    layoutManager = LinearLayoutManager(this.context)
-                }
+                layoutManager = LinearLayoutManager(this.context)
+            }
         }
         binding.gridButton.setOnClickListener {
             binding.homeRecycler.apply {
-                    layoutManager = GridLayoutManager(this.context, 2)
-                }
+                layoutManager = GridLayoutManager(this.context, 2)
+            }
         }
     }
     override fun onStop() {
