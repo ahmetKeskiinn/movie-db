@@ -42,7 +42,6 @@ class FavMoviesAdapter(private val onItemClickListener: (ResultInfo) -> Unit) :
         }
     }
 
-    fun getFavMovieAt(position: Int) = getItem(position)
     inner class FavMovieHolder(var view: FavRecyclerItemBinding) :
         RecyclerView.ViewHolder(view.root) {
         val followMovie: ImageView = itemView.findViewById(R.id.followUnfollowStar)

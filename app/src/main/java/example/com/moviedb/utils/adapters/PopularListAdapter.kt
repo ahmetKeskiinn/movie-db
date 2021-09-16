@@ -41,21 +41,22 @@ class PopularListAdapter(
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
         holder.view.movieModel = getItem(position)
         holder.imageMovie.updateWithUrl(BuildConfig.IMAGE_BASE_URL+holder.view.movieModel?.posterPath, holder.imageMovie)
-        checkFollow1(holder.followMovie, getItem(position)?.movieNumb)
+        checkFollow1(holder.followMovie, getItem(position)?.movieNumb,position)
     }
-    private fun checkFollow1(followMovie: ImageView, selectedMdel: Int?) {
+    private fun checkFollow1(followMovie: ImageView, selectedMdel: Int?, position: Int) {
         if (dbList.contains(selectedMdel)) {
+            getItem(position)?.isFav = true
             followMovie.changeFollowingResource(true, followMovie)
         } else {
+            getItem(position)?.isFav = false
             followMovie.changeFollowingResource(false, followMovie)
         }
     }
     private fun checkFollow(followMovie: ImageView, selectedMdel: ResultInfo?) {
+        Log.d("TAG", "checkFollow: " + selectedMdel?.isFav)
         if (selectedMdel?.isFav == true) {
-            selectedMdel.isFav = false
             followMovie.changeFollowingResource(selectedMdel.isFav, followMovie)
         } else {
-            selectedMdel?.isFav = true
             followMovie.changeFollowingResource(selectedMdel?.isFav, followMovie)
         }
     }
@@ -77,8 +78,14 @@ class PopularListAdapter(
                     getItem(adapterPosition)?.let { it1 ->
                         listener.itemClick(it1)
                     }
-
-                checkFollow(followMovie, getItem(adapterPosition))
+                var model = getItem(adapterPosition)
+                if(model?.isFav==true){
+                    model.isFav = false
+                }
+                else{
+                    model?.isFav = true
+                }
+                    checkFollow(followMovie, model)
             } else {
                 val action = getItem(adapterPosition)?.movieNumb?.let { HomeFragmentDirections.actionNavigationHomeToDetailFragment(it) }
                 action?.let { Navigation.findNavController(view.root).navigate(it) }
