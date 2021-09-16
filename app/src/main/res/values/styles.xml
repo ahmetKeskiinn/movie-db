@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="homeLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
     </style>
+
     <style name="homeSubLayout">
         <item name="android:padding">10dp</item>
         <item name="android:layout_width">match_parent</item>
@@ -21,11 +23,20 @@
         <item name="android:layout_marginEnd">5dp</item>
         <item name="android:layout_weight">1</item>
     </style>
+
+    <style name="radioButtonGroupStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <style name="bottomSubLayout">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">horizontal</item>
     </style>
+
     <style name="detailTw1">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -34,6 +45,7 @@
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginTop">5dp</item>
     </style>
+
     <style name="detailTw2">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -44,6 +56,7 @@
         <item name="android:layout_marginEnd">10dp</item>
         <item name="android:layout_marginTop">5dp</item>
     </style>
+
     <style name="topTw">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -51,29 +64,53 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="topImageView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">56dp</item>
         <item name="android:background">@color/turq</item>
     </style>
+
     <style name="mainRecycler">
         <item name="android:padding">10dp</item>
-        <item name="android:paddingBottom">10dp </item>
+        <item name="android:paddingBottom">10dp</item>
         <item name="android:layout_marginTop">96dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginBottom">56dp</item>
 
     </style>
+
     <style name="recyclerItem">
+        <item name="android:background">@color/mainRecyclerColor</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">150dp</item>
         <item name="cardCornerRadius">20dp</item>
         <item name="android:layout_marginTop">4dp</item>
         <item name="layout_goneMarginEnd">8dp</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
         <item name="android:layout_marginBottom">4dp</item>
         <item name="layout_goneMarginStart">8dp</item>
     </style>
+
+    <style name="recyclerSub1">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="recyclerSub2">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center|start</item>
+        <item name="android:orientation">vertical</item>
+
+    </style>
+
     <style name="recyclerItemText">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
@@ -83,13 +120,14 @@
         <item name="android:textStyle">bold</item>
 
     </style>
+
     <style name="recyclerItemStar">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:layout_marginTop">10dp</item>
     </style>
-
 
 
 </resources>

@@ -1,57 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal">
+
     <data>
+
         <variable
             name="favModel"
             type="example.com.moviedb.features.home.model.ResultInfo" />
     </data>
 
     <LinearLayout
-        android:background="@color/mainRecyclerColor"
         android:id="@+id/recyclerItemLayout"
-        style="@style/recyclerItem"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
+        style="@style/recyclerItem">
 
-            android:orientation="vertical">
+        <LinearLayout style="@style/recyclerSub1">
+
             <ImageView
                 android:id="@+id/imageMovie"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:srcCompat="@tools:sample/avatars" />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="left"
-            android:gravity="center|left"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            >
+
+        <LinearLayout style="@style/recyclerSub2">
+
             <TextView
                 android:id="@+id/movieName"
                 style="@style/recyclerItemText"
-                android:text="@{favModel.title}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:text="@{favModel.title}" />
 
             <ImageView
                 android:id="@+id/followUnfollowStar"
                 style="@style/recyclerItemStar"
-                android:layout_marginTop="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_unfaw_ic" />
         </LinearLayout>
     </LinearLayout>

@@ -2,152 +2,174 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="movie"
             type="example.com.moviedb.features.detail.model.Detail" />
     </data>
 
 
-<LinearLayout
-    style="@style/homeLayout"
-    tools:context=".features.detail.DetailFragment">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/imageView2"
-            style="@style/topImageView"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/movieName"
-            style="@style/topTw"
-            android:text="@{movie.title}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/imageView2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/insertButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_unfaw_ic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
     <LinearLayout
-        style="@style/homeSubLayout">
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+        style="@style/homeLayout"
+        tools:context=".features.detail.DetailFragment">
 
-            tools:src="@tools:sample/avatars" />
-        <LinearLayout
-            style="@style/detailSubLayout">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    style="@style/detailTw1"
-                    android:text="@string/id" />
-                <TextView
-                    android:id="@+id/idTw"
-                    android:text="@{movie.id.toString()}"
-                    style="@style/detailTw2" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                style="@style/topImageView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/movieName"
+                style="@style/topTw"
+                android:text="@{movie.title}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/insertButton"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_unfaw_ic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout style="@style/homeSubLayout">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+
+                tools:src="@tools:sample/avatars" />
+
+            <LinearLayout style="@style/detailSubLayout">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/detailTw1"
+                        android:text="@string/id" />
+
+                    <TextView
+                        android:id="@+id/idTw"
+                        style="@style/detailTw2"
+                        android:text="@{movie.id.toString()}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/detailTw1"
+                        android:text="@string/genre" />
+
+                    <TextView
+                        android:id="@+id/genreTw"
+                        style="@style/detailTw2"
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/detailTw1"
+                        android:text="@string/releaseDate" />
+
+                    <TextView
+                        android:id="@+id/releaseTw"
+                        style="@style/detailTw2"
+                        android:text="@{movie.releaseDate}" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/detailSubLayout">
+
+            <LinearLayout style="@style/bottomSubLayout">
+
                 <TextView
                     style="@style/detailTw1"
-                    android:text="@string/genre" />
+                    android:layout_weight="1"
+                    android:text="@string/overview" />
+
                 <TextView
-                    android:id="@+id/genreTw"
+                    android:id="@+id/overViewTw"
                     style="@style/detailTw2"
-                    android:text="" />
+                    android:text="@{movie.overview}" />
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+
+            <LinearLayout style="@style/bottomSubLayout">
+
                 <TextView
                     style="@style/detailTw1"
-                    android:text="@string/releaseDate" />
+                    android:layout_weight="1"
+                    android:text="@string/status" />
+
                 <TextView
-                    android:id="@+id/releaseTw"
+                    android:id="@+id/statusTw"
                     style="@style/detailTw2"
-                    android:text="@{movie.releaseDate}" />
+                    android:text="@{movie.status}" />
             </LinearLayout>
 
-        </LinearLayout>
+            <LinearLayout style="@style/bottomSubLayout">
 
-    </LinearLayout>
+                <TextView
+                    style="@style/detailTw1"
+                    android:text="@string/tagline" />
 
-    <LinearLayout
-        style="@style/detailSubLayout">
-        <LinearLayout
-            style="@style/bottomSubLayout">
-            <TextView
-                style="@style/detailTw1"
-                android:layout_weight="1"
-                android:text="@string/overview" />
-            <TextView
-                android:id="@+id/overViewTw"
-                style="@style/detailTw2"
-                android:text="@{movie.overview}"/>
-        </LinearLayout>
-        <LinearLayout
-            style="@style/bottomSubLayout">
-            <TextView
-                style="@style/detailTw1"
-                android:layout_weight="1"
-                android:text="@string/status" />
-            <TextView
-                android:id="@+id/statusTw"
-                style="@style/detailTw2"
-                android:text="@{movie.status}" />
-        </LinearLayout>
-        <LinearLayout
-            style="@style/bottomSubLayout">
-            <TextView
-                style="@style/detailTw1"
-                android:text="@string/tagline" />
+                <TextView
+                    android:id="@+id/taglineTw"
+                    style="@style/detailTw2"
+                    android:text="@{movie.tagline}" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/taglineTw"
-                style="@style/detailTw2"
-                android:text="@{movie.tagline}"/>
-        </LinearLayout>
-        <LinearLayout
-            style="@style/bottomSubLayout">
-            <TextView
-                style="@style/detailTw1"
-                android:text="@string/voteCount" />
-            <TextView
-                android:id="@+id/voteCountTw"
-                style="@style/detailTw2"
-                android:text="@{movie.voteCount.toString()}" />
-        </LinearLayout>
-        <LinearLayout
-            style="@style/bottomSubLayout">
-            <TextView
-                style="@style/detailTw1"
-                android:text="@string/voteAverage" />
-            <TextView
-                android:id="@+id/voteAverageTw"
-                style="@style/detailTw2"
-                android:text="@{movie.voteAverage.toString()}" />
+            <LinearLayout style="@style/bottomSubLayout">
+
+                <TextView
+                    style="@style/detailTw1"
+                    android:text="@string/voteCount" />
+
+                <TextView
+                    android:id="@+id/voteCountTw"
+                    style="@style/detailTw2"
+                    android:text="@{movie.voteCount.toString()}" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/bottomSubLayout">
+
+                <TextView
+                    style="@style/detailTw1"
+                    android:text="@string/voteAverage" />
+
+                <TextView
+                    android:id="@+id/voteAverageTw"
+                    style="@style/detailTw2"
+                    android:text="@{movie.voteAverage.toString()}" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
 </layout>
