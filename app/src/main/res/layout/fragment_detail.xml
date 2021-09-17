@@ -9,167 +9,178 @@
             name="movie"
             type="example.com.moviedb.features.detail.model.Detail" />
     </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        style="@style/topImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/movieName"
+        style="@style/topTw"
+        android:text="@{movie.title}"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+    <ImageView
+        android:id="@+id/insertButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_unfaw_ic"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/detailTw1"
+        android:layout_marginStart="10dp"
+        android:text="@string/id"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/idTw"
+        style="@style/detailTw2"
+        android:text="@{movie.id.toString()}"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/textView9"
+        style="@style/detailTw1"
+
+        android:text="@string/genre"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/releaseTw" />
+
+    <TextView
+        android:id="@+id/genreTw"
+        style="@style/detailTw2"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/textView9"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/releaseTw" />
+
+    <TextView
+        android:id="@+id/textView5"
+        style="@style/detailTw1"
+        android:text="@string/releaseDate"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/idTw" />
+
+    <TextView
+        android:id="@+id/releaseTw"
+        style="@style/detailTw2"
+        android:text="@{movie.releaseDate}"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/idTw" />
+
+    <TextView
+        android:id="@+id/textView7"
+        style="@style/detailTw1"
+        android:layout_marginStart="10dp"
+        android:layout_weight="1"
+        android:text="@string/overview"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
-    <LinearLayout
-        style="@style/homeLayout"
-        tools:context=".features.detail.DetailFragment">
+    <TextView
+        android:id="@+id/overViewTw"
+        style="@style/detailTw2"
+        android:layout_width="match_parent"
+        android:layout_marginStart="100dp"
+        android:text="@{movie.overview}"
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-            <ImageView
-                android:id="@+id/imageView2"
-                style="@style/topImageView"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textView10"
+        style="@style/detailTw1"
+        android:layout_weight="1"
+        android:text="@string/status"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/taglineTw" />
 
-            <TextView
-                android:id="@+id/movieName"
-                style="@style/topTw"
-                android:text="@{movie.title}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/imageView2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/insertButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:src="@drawable/ic_unfaw_ic"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/imageView2"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/statusTw"
+        style="@style/detailTw2"
+        android:text="@{movie.status}"
+        app:layout_constraintBottom_toBottomOf="@+id/textView10"
+        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/taglineTw" />
 
-        <LinearLayout style="@style/homeSubLayout">
+    <TextView
+        android:id="@+id/textView3"
+        style="@style/detailTw1"
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+        android:text="@string/tagline"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/voteAverageTw" />
 
-                tools:src="@tools:sample/avatars" />
+    <TextView
+        android:id="@+id/taglineTw"
+        style="@style/detailTw2"
+        android:text="@{movie.tagline}"
+        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/voteAverageTw" />
 
-            <LinearLayout style="@style/detailSubLayout">
+    <TextView
+        android:id="@+id/textView6"
+        style="@style/detailTw1"
+        android:layout_width="82dp"
+        android:layout_height="19dp"
+        android:text="@string/voteCount"
+        app:layout_constraintStart_toStartOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/overViewTw" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
 
-                    <TextView
-                        style="@style/detailTw1"
-                        android:text="@string/id" />
+    <TextView
+        android:id="@+id/voteCountTw"
+        style="@style/detailTw2"
+        android:text="@{movie.voteCount.toString()}"
+        app:layout_constraintBottom_toBottomOf="@+id/textView6"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/overViewTw" />
 
-                    <TextView
-                        android:id="@+id/idTw"
-                        style="@style/detailTw2"
-                        android:text="@{movie.id.toString()}" />
-                </LinearLayout>
+    <TextView
+        android:id="@+id/textView8"
+        style="@style/detailTw1"
+        android:text="@string/voteAverage"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/voteCountTw" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/detailTw1"
-                        android:text="@string/genre" />
-
-                    <TextView
-                        android:id="@+id/genreTw"
-                        style="@style/detailTw2"
-                        android:text="" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/detailTw1"
-                        android:text="@string/releaseDate" />
-
-                    <TextView
-                        android:id="@+id/releaseTw"
-                        style="@style/detailTw2"
-                        android:text="@{movie.releaseDate}" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout style="@style/detailSubLayout">
-
-            <LinearLayout style="@style/bottomSubLayout">
-
-                <TextView
-                    style="@style/detailTw1"
-                    android:layout_weight="1"
-                    android:text="@string/overview" />
-
-                <TextView
-                    android:id="@+id/overViewTw"
-                    style="@style/detailTw2"
-                    android:text="@{movie.overview}" />
-            </LinearLayout>
-
-            <LinearLayout style="@style/bottomSubLayout">
-
-                <TextView
-                    style="@style/detailTw1"
-                    android:layout_weight="1"
-                    android:text="@string/status" />
-
-                <TextView
-                    android:id="@+id/statusTw"
-                    style="@style/detailTw2"
-                    android:text="@{movie.status}" />
-            </LinearLayout>
-
-            <LinearLayout style="@style/bottomSubLayout">
-
-                <TextView
-                    style="@style/detailTw1"
-                    android:text="@string/tagline" />
-
-                <TextView
-                    android:id="@+id/taglineTw"
-                    style="@style/detailTw2"
-                    android:text="@{movie.tagline}" />
-            </LinearLayout>
-
-            <LinearLayout style="@style/bottomSubLayout">
-
-                <TextView
-                    style="@style/detailTw1"
-                    android:text="@string/voteCount" />
-
-                <TextView
-                    android:id="@+id/voteCountTw"
-                    style="@style/detailTw2"
-                    android:text="@{movie.voteCount.toString()}" />
-            </LinearLayout>
-
-            <LinearLayout style="@style/bottomSubLayout">
-
-                <TextView
-                    style="@style/detailTw1"
-                    android:text="@string/voteAverage" />
-
-                <TextView
-                    android:id="@+id/voteAverageTw"
-                    style="@style/detailTw2"
-                    android:text="@{movie.voteAverage.toString()}" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/voteAverageTw"
+        style="@style/detailTw2"
+        android:text="@{movie.voteAverage.toString()}"
+        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/voteCountTw" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
