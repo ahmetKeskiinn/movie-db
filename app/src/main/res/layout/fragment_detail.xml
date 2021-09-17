@@ -9,6 +9,11 @@
             name="movie"
             type="example.com.moviedb.features.detail.model.Detail" />
     </data>
+    <ScrollView
+        android:id="@+id/detailScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="56dp">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -183,4 +188,5 @@
         app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/voteCountTw" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ScrollView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -23,9 +24,9 @@ class DetailFragment : Fragment() {
     private lateinit var dataBinding: FragmentDetailBinding
     private lateinit var type: String
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         dataBinding = FragmentDetailBinding.inflate(inflater, container, false)
         return dataBinding.root
@@ -33,6 +34,10 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dataBinding.detailScrollView.apply {
+            isVerticalScrollBarEnabled = true
+            isHorizontalScrollBarEnabled = false
+        }
         initialVM()
         arguments?.let {
             observeData(it)
@@ -45,14 +50,14 @@ class DetailFragment : Fragment() {
     }
     private fun observeData(bundle: Bundle) {
         detailViewModel.getMovieDetail(DetailFragmentArgs.fromBundle(bundle).movieId).observe(
-            viewLifecycleOwner,
-            Observer {
-                dataBinding.movie = it
+                viewLifecycleOwner,
+                Observer {
+                    dataBinding.movie = it
 
-                dataBinding.imageView.updateWithUrl(BuildConfig.IMAGE_BASE_URL + it.posterPath.toString(), dataBinding.imageView)
-                initialClickers(it)
-                checkDB(it)
-            }
+                    dataBinding.imageView.updateWithUrl(BuildConfig.IMAGE_BASE_URL + it.posterPath.toString(), dataBinding.imageView)
+                    initialClickers(it)
+                    checkDB(it)
+                }
         )
     }
     private fun checkDB(model: Detail) {
