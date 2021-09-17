@@ -14,7 +14,6 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-@ExperimentalCoroutinesApi
 class DetailCoroutineTest {
     @Mock
     private lateinit var repo: FavRepository

@@ -11,10 +11,10 @@ import example.com.moviedb.features.home.model.ResultInfo
 @Dao
 interface FavDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun addMovie(model: ResultInfo)
+    suspend fun addMovie(model: ResultInfo)
 
     @Delete
-    fun deleteMovie(model: ResultInfo?)
+    suspend fun deleteMovie(model: ResultInfo?)
 
     @Query("SELECT * FROM fav where movieNumb=:id")
     fun checkById(id: String): LiveData<List<ResultInfo>>

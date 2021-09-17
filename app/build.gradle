@@ -30,6 +30,11 @@ android {
     testOptions {
         unitTests.returnDefaultValues = true
     }
+    packagingOptions {
+        merge "META-INF/LICENSE"
+        merge "META-INF/AL2.0"
+        merge "META-INF/LGPL2.1"
+    }
     buildTypes {
 
         release {
@@ -116,7 +121,8 @@ dependencies {
     //coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
-
+    testImplementation "com.google.truth:truth:1.0.1"
+    androidTestImplementation "com.google.truth:truth:1.0.1"
     //mockito
     testImplementation("androidx.test:core:$mockito_test_core")
     testImplementation("org.mockito:mockito-core:$mockito_core")
@@ -131,5 +137,8 @@ dependencies {
     //coroutine test
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2'
     androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2'
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
+    implementation "androidx.room:room-ktx:2.2.5"
 
 }
