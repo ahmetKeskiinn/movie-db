@@ -19,7 +19,7 @@ import org.junit.runner.RunWith
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
 @SmallTest
-class ShoppingDaoTest {
+class FavDatabaseTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()

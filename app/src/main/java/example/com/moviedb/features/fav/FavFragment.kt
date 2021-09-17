@@ -9,11 +9,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.squareup.okhttp.Dispatcher
 import example.com.moviedb.MyApp
 import example.com.moviedb.databinding.FragmentDashboardBinding
 import example.com.moviedb.features.home.model.ResultInfo
 import example.com.moviedb.utils.ViewModelFactory
 import example.com.moviedb.utils.adapters.FavMoviesAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class FavFragment : Fragment() {
@@ -38,13 +42,16 @@ class FavFragment : Fragment() {
         initialRecyclerView()
         initialLayoutManagers()
         observeData()
+
     }
     private fun initialVM() {
         MyApp.appComponent.inject(this)
         favViewModel = ViewModelProviders.of(this, favViewModelFactory)[FavViewModel::class.java]
     }
     private fun deleteFromDb(model: ResultInfo) {
-        favViewModel.deleteMovie(model)
+        CoroutineScope(Dispatchers.IO).launch {
+            favViewModel.deleteMovie(model)
+        }
         observeData()
     }
     private fun initialRecyclerView() {
@@ -70,11 +77,11 @@ class FavFragment : Fragment() {
         }
     }
     private fun observeData() {
-        favViewModel.getAllList().observe(
-            viewLifecycleOwner,
-            Observer {
-                recyclerAdapter.submitList(it)
-            }
-        )
+            favViewModel.getAllList().observe(
+                viewLifecycleOwner,
+                Observer {
+                    recyclerAdapter.submitList(it)
+                }
+            )
     }
 }
