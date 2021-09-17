@@ -27,7 +27,9 @@ android {
     buildFeatures {
         viewBinding true
     }
-
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
     buildTypes {
 
         release {
@@ -125,5 +127,9 @@ dependencies {
 
     //google material
     implementation "com.google.android.material:material:$material_version"
+
+    //coroutine test
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2'
+    androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2'
 
 }

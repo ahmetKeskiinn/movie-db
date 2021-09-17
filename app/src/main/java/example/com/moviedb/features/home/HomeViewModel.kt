@@ -43,7 +43,6 @@ class HomeViewModel @Inject constructor(private val popularMovieList: PopularMov
         )
     }
     fun getPopularMovieList(): LiveData<PagingData<ResultInfo>> {
-
         return popularMovieList.getPopularMovieList()
     }
 }
