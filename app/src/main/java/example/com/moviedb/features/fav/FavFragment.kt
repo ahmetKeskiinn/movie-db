@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.squareup.okhttp.Dispatcher
 import example.com.moviedb.MyApp
 import example.com.moviedb.databinding.FragmentDashboardBinding
 import example.com.moviedb.features.home.model.ResultInfo
@@ -42,7 +41,6 @@ class FavFragment : Fragment() {
         initialRecyclerView()
         initialLayoutManagers()
         observeData()
-
     }
     private fun initialVM() {
         MyApp.appComponent.inject(this)
@@ -77,11 +75,11 @@ class FavFragment : Fragment() {
         }
     }
     private fun observeData() {
-            favViewModel.getAllList().observe(
-                viewLifecycleOwner,
-                Observer {
-                    recyclerAdapter.submitList(it)
-                }
-            )
+        favViewModel.getAllList().observe(
+            viewLifecycleOwner,
+            Observer {
+                recyclerAdapter.submitList(it)
+            }
+        )
     }
 }

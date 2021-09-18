@@ -1,56 +1,47 @@
 package example.com.moviedb
 
-import example.com.moviedb.features.detail.DetailViewModel
-import example.com.moviedb.features.detail.MovieDetailSource
+import example.com.moviedb.features.fav.FavViewModel
 import example.com.moviedb.features.fav.db.FavRepository
 import example.com.moviedb.features.home.model.ResultInfo
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.runBlockingTest
-import kotlinx.coroutines.test.setMain
 import org.junit.Before
 import org.junit.Test
 import org.mockito.InjectMocks
 import org.mockito.Mock
-import org.mockito.Mockito.verify
+import org.mockito.Mockito
+import org.mockito.Mockito.times
 import org.mockito.MockitoAnnotations
 
 @ExperimentalCoroutinesApi
-class DetailViewModelTest {
+class FavViewModelTest {
     @Mock
     private lateinit var repo: FavRepository
 
-    @Mock
-    private lateinit var source: MovieDetailSource
-
     @InjectMocks
-    private lateinit var viewmodel: DetailViewModel
-
-    @ExperimentalCoroutinesApi
-    private val testDispatcher = TestCoroutineDispatcher()
+    private lateinit var viewmodel: FavViewModel
 
     @Before
     fun before() {
         MockitoAnnotations.initMocks(this)
-        Dispatchers.setMain(testDispatcher)
     }
     @Test
     fun testInsertMovie() {
         val model = ResultInfo(1, "1", "test", "testPoster", true)
         viewmodel.insertMovie(model)
-        verify(repo).insertMovie(model)
+        Mockito.verify(repo).insertMovie(model)
     }
     @Test
     fun testDeleteMovie() {
         val model = ResultInfo(1, "1", "test", "testPoster", true)
         viewmodel.deleteMovie(model)
-        verify(repo).deleteMovie(model)
+        Mockito.verify(repo, times(0)).deleteMovie(model)
     }
 
-    @ExperimentalCoroutinesApi
     @Test
-    fun testGetMovieDetail() = runBlockingTest {
-        viewmodel.getMovieDetail(619778)
+    fun testGetAllList() {
+        val model = ResultInfo(1, "1", "test", "testPoster", true)
+        viewmodel.insertMovie(model)
+        viewmodel.getAllList()
+        Mockito.verify(repo).getAllList()
     }
 }

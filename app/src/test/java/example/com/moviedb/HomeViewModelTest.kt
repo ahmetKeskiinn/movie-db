@@ -4,15 +4,17 @@ import example.com.moviedb.features.fav.db.FavRepository
 import example.com.moviedb.features.home.HomeViewModel
 import example.com.moviedb.features.home.PopularMovieListSource
 import example.com.moviedb.features.home.model.ResultInfo
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
 import org.junit.Test
 import org.mockito.InjectMocks
 import org.mockito.Mock
+import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 
+@ExperimentalCoroutinesApi
 class HomeViewModelTest {
-
     @Mock
     private lateinit var repo: FavRepository
 
@@ -23,35 +25,31 @@ class HomeViewModelTest {
     private lateinit var viewmodel: HomeViewModel
 
     @Before
-    fun before() {
+    fun setup() {
         MockitoAnnotations.initMocks(this)
     }
+
     @Test
     fun testDeleteMovie() {
         val model = ResultInfo(1, "Test")
         viewmodel.deleteMovie(model)
-        verify(repo).deleteMovie(model)
+        verify(repo, times(0)).deleteMovie(model)
     }
+
     @Test
     fun testInsertMovie() {
         val model = ResultInfo(1, "Test")
         viewmodel.insertMovie(model)
-        verify(repo).insertMovie(model)
+        verify(repo, times(0)).insertMovie(model)
     }
     @Test
-    fun testCheckById() {
-        val model = ResultInfo(1, "tesModel", "test")
-        // viewmodel.checkById(model)
-        //   verify(viewmodel).checkById(model)
+    fun testSearchByMovieName() {
+        viewmodel.searchByMovieName("Test")
+        verify(source).getSearchList("Test")
     }
     @Test
-    fun testGetPopularMovieList() {
+    fun testGetPopularList() {
         viewmodel.getPopularMovieList()
         verify(source).getPopularMovieList()
-    }
-    @Test
-    fun testGetDbList() {
-        viewmodel.getDbList()
-        verify(repo).getAllList()
     }
 }

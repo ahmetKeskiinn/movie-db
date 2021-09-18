@@ -18,15 +18,12 @@ class HomeViewModel @Inject constructor(private val popularMovieList: PopularMov
             model.isFav = true
             repo.insertMovie(model)
         }
-        //repo.insertMovie(model)
     }
     fun deleteMovie(model: ResultInfo) {
         CoroutineScope(Dispatchers.IO).launch {
             model.isFav = false
             repo.deleteMovie(model)
         }
-
-       // repo.deleteMovie(model)
     }
     fun searchByMovieName(movieName: String): LiveData<PagingData<ResultInfo>> {
         return popularMovieList.getSearchList(movieName)
