@@ -9,7 +9,10 @@ import example.com.moviedb.features.home.model.ResultInfo
 import example.com.moviedb.utils.GetService
 import javax.inject.Inject
 
-class PopularMovieListSource @Inject constructor(private val api: GetService, private val homePagingSource: HomePagingSource) {
+class PopularMovieListSource @Inject constructor(
+    private val api: GetService,
+    private val homePagingSource: HomePagingSource
+) {
 
     fun getSearchList(movieName: String): LiveData<PagingData<ResultInfo>> {
         homePagingSource.key = movieName

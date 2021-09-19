@@ -14,7 +14,10 @@ import example.com.moviedb.utils.changeFollowingResource
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class DetailViewModel @Inject constructor(private val movieDetailSource: MovieDetailSource, private val repo: FavRepository) : ViewModel() {
+class DetailViewModel @Inject constructor(
+    private val movieDetailSource: MovieDetailSource,
+    private val repo: FavRepository
+) : ViewModel() {
     val data = MutableLiveData<Detail>()
     fun getMovieDetail(id: Int): LiveData<Detail> {
         viewModelScope.launch {

@@ -13,10 +13,17 @@ import javax.inject.Singleton
 class HomeModule {
     @Provides
     @Singleton
-    internal fun providePopularMovies(api: GetService, homePagingSource: HomePagingSource): PopularMovieListSource = PopularMovieListSource(api, homePagingSource)
+    internal fun providePopularMovies(
+        api: GetService,
+        homePagingSource: HomePagingSource
+    ): PopularMovieListSource = PopularMovieListSource(api, homePagingSource)
     @Provides
     @Singleton
-    internal fun providePagingMovies(api: GetService): HomePagingSource = HomePagingSource(api)
+    internal fun providePagingMovies(
+        api: GetService
+    ): HomePagingSource = HomePagingSource(
+        api
+    )
 }
 @Module
 abstract class HomeViewModelModule {

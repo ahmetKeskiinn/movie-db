@@ -53,7 +53,11 @@ class DetailFragment : Fragment() {
             Observer {
                 dataBinding.movie = it
 
-                dataBinding.imageView.updateWithUrl(BuildConfig.IMAGE_BASE_URL + it.posterPath.toString(), dataBinding.imageView)
+                dataBinding.imageView.updateWithUrl(
+                    BuildConfig.IMAGE_BASE_URL +
+                        it.posterPath.toString(),
+                    dataBinding.imageView
+                )
                 initialClickers(it)
                 checkDB(it)
             }

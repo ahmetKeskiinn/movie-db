@@ -12,7 +12,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(private val popularMovieList: PopularMovieListSource, private val repo: FavRepository) : ViewModel() {
+class HomeViewModel @Inject constructor(
+    private val popularMovieList: PopularMovieListSource,
+    private val repo: FavRepository
+) : ViewModel() {
     fun insertMovie(model: ResultInfo) {
         CoroutineScope(Dispatchers.IO).launch {
             model.isFav = true

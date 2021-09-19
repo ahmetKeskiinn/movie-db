@@ -39,7 +39,11 @@ class PopularListAdapter(
     }
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
         holder.view.movieModel = getItem(position)
-        holder.imageMovie.updateWithUrl(BuildConfig.IMAGE_BASE_URL + holder.view.movieModel?.posterPath, holder.imageMovie)
+        holder.imageMovie.updateWithUrl(
+            BuildConfig.IMAGE_BASE_URL +
+                holder.view.movieModel?.posterPath,
+            holder.imageMovie
+        )
         checkFollow1(holder.followMovie, getItem(position)?.movieNumb, position)
     }
     private fun checkFollow1(followMovie: ImageView, selectedMdel: Int?, position: Int) {
@@ -85,7 +89,9 @@ class PopularListAdapter(
                 }
                 checkFollow(followMovie, model)
             } else {
-                val action = getItem(adapterPosition)?.movieNumb?.let { HomeFragmentDirections.actionNavigationHomeToDetailFragment(it) }
+                val action = getItem(adapterPosition)?.movieNumb?.let {
+                    HomeFragmentDirections.actionNavigationHomeToDetailFragment(it)
+                }
                 action?.let { Navigation.findNavController(view.root).navigate(it) }
             }
         }
