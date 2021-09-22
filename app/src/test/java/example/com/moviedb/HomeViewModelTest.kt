@@ -7,7 +7,6 @@ import example.com.moviedb.features.home.PopularMovieListSource
 import example.com.moviedb.features.home.model.ResultInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
@@ -70,8 +69,8 @@ class HomeViewModelTest {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun testCheckById() = runBlockingTest{
-        val model = ResultInfo(1,"test","test", "test",true)
+    fun testCheckById() = runBlockingTest {
+        val model = ResultInfo(1, "test", "test", "test", true)
         viewmodel.checkById(model)
         verify(repo, times(0)).insertMovie(model)
     }
