@@ -1,6 +1,5 @@
 package example.com.moviedb.utils.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,7 +55,6 @@ class PopularListAdapter(
         }
     }
     private fun checkFollow(followMovie: ImageView, selectedMdel: ResultInfo?) {
-        Log.d("TAG", "checkFollow: " + selectedMdel?.isFav)
         if (selectedMdel?.isFav == true) {
             followMovie.changeFollowingResource(selectedMdel.isFav, followMovie)
         } else {

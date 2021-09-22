@@ -1,8 +1,6 @@
 package example.com.moviedb.features.detail
 
 import android.widget.ImageView
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,6 +8,8 @@ import example.com.moviedb.features.detail.model.Detail
 import example.com.moviedb.features.fav.db.FavRepository
 import example.com.moviedb.features.home.model.ResultInfo
 import example.com.moviedb.utils.changeFollowingResource
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -30,40 +30,37 @@ class DetailViewModel @Inject constructor(
     fun deleteMovie(model: ResultInfo) {
         repo.deleteMovie(model)
     }
-    fun checkDB(viewLifecycleOwner: LifecycleOwner, model: Detail, imageView: ImageView) {
-        /*repo.checkById(model.id.toString()).observe(
-            viewLifecycleOwner,
-            Observer {
-                if (it.size> 0) {
+    fun checkDB(model: Detail, imageView: ImageView) {
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val size = model.id?.let { repo.checkById(it) }
+            if (size != null) {
+                if (size> 0) {
                     imageviewChange(true, imageView)
                 } else {
                     imageviewChange(false, imageView)
                 }
             }
-        )*/
+        }
     }
     private fun imageviewChange(isFav: Boolean?, imageView: ImageView) {
         imageView.changeFollowingResource(isFav, imageView)
     }
-    fun insertDeleteDB(viewLifecycleOwner: LifecycleOwner, model: Detail, imageView: ImageView) {
-     /*   var a = 0
-        repo.checkById(model.id.toString()).observe(
-            viewLifecycleOwner,
-            Observer {
-                if (it.size == 0 && a == 0) {
-                    a = 1
-                    val model1 = ResultInfo(model.id, model.overview, model.title, model.posterPath, true)
-                    insertMovie(model1)
-                    imageviewChange(model1.isFav, imageView)
-                } else {
-                    if (a == 0) {
-                        a = 1
-                        val model1 = ResultInfo(model.id, model.overview, model.title)
-                        deleteMovie(model1)
-                        imageviewChange(model1.isFav, imageView)
-                    }
-                }
+    fun insertDeleteDB(model: Detail, imageView: ImageView) {
+        var flag = 0
+        CoroutineScope(Dispatchers.IO).launch {
+            val size = model.id?.let { repo.checkById(it) }
+            if (size == 0 && flag == 0) {
+                flag = 1
+                val model1 = ResultInfo(model.id, model.overview, model.title, model.posterPath, true)
+                insertMovie(model1)
+                imageviewChange(model1.isFav, imageView)
+            } else {
+                flag = 1
+                val model1 = ResultInfo(model.id, model.overview, model.title)
+                deleteMovie(model1)
+                imageviewChange(model1.isFav, imageView)
             }
-        )*/
+        }
     }
 }

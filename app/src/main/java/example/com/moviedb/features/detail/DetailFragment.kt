@@ -64,10 +64,10 @@ class DetailFragment : Fragment() {
         )
     }
     private fun checkDB(model: Detail) {
-        detailViewModel.checkDB(this, model, dataBinding.insertButton)
+        detailViewModel.checkDB(model, dataBinding.insertButton)
     }
     private fun insertDeleteDb(model: Detail, imageview: ImageView) {
-        detailViewModel.insertDeleteDB(this, model, imageview)
+        detailViewModel.insertDeleteDB(model, imageview)
     }
     private fun initialClickers(resultInfo: Detail) {
         dataBinding.insertButton.setOnClickListener {
