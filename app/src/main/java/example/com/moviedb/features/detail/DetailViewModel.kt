@@ -1,6 +1,7 @@
 package example.com.moviedb.features.detail
 
 import android.widget.ImageView
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
