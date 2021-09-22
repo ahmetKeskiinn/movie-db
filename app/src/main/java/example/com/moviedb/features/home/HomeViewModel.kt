@@ -1,8 +1,6 @@
 package example.com.moviedb.features.home
 
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagingData
 import example.com.moviedb.features.fav.db.FavRepository
@@ -35,22 +33,18 @@ class HomeViewModel @Inject constructor(
         return repo.getAllList()
     }
 
-    fun checkById(model: ResultInfo, viewLifecycleOwner: LifecycleOwner) {
+    fun checkById(model: ResultInfo) {
         var a = 0
-        repo.checkById(model.movieNumb.toString()).observe(
-            viewLifecycleOwner,
-            Observer {
-                if (it.size == 0 && a == 0) {
-                    a = 1
-                    insertMovie(model)
-                } else {
-                    if (a == 0) {
-                        a = 1
-                        deleteMovie(model)
-                    }
-                }
+        CoroutineScope(Dispatchers.IO).launch {
+            var size = model.movieNumb?.let { repo.checkById(it) }
+            if (size == 0 && a == 0) {
+                a = 1
+                insertMovie(model)
+            } else {
+                a = 1
+                deleteMovie(model)
             }
-        )
+        }
     }
     fun getPopularMovieList(): LiveData<PagingData<ResultInfo>> {
         return popularMovieList.getPopularMovieList()

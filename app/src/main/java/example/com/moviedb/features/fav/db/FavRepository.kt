@@ -23,7 +23,8 @@ class FavRepository(db: FavDatabase) {
             favDao.deleteMovie(model)
         }
     }
-    fun checkById(id: String): LiveData<List<ResultInfo>> {
-        return favDao.checkById(id)
+    fun checkById(id: Int): Int {
+
+        return favDao.checkById1(id)
     }
 }

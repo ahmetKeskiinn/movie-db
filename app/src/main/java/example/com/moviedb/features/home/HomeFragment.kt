@@ -131,6 +131,6 @@ class HomeFragment : Fragment(), ClickListener {
         binding.searchMovie.setText("")
     }
     override fun itemClick(data: ResultInfo) {
-        homeViewModel.checkById(data, this)
+        homeViewModel.checkById(data)
     }
 }

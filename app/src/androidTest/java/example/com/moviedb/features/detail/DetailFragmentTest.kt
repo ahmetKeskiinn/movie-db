@@ -28,7 +28,7 @@ class DetailFragmentTest : TestCase() {
         onView(withId(R.id.insertButton)).perform(click())
         Thread.sleep(1000)
     }
-  /*  @Test
+   /* @Test
     fun testTextView(){
         val testName = "Test"
         val model = Detail()

@@ -4,7 +4,6 @@ import android.widget.ImageView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import example.com.moviedb.features.detail.model.Detail
@@ -32,7 +31,7 @@ class DetailViewModel @Inject constructor(
         repo.deleteMovie(model)
     }
     fun checkDB(viewLifecycleOwner: LifecycleOwner, model: Detail, imageView: ImageView) {
-        repo.checkById(model.id.toString()).observe(
+        /*repo.checkById(model.id.toString()).observe(
             viewLifecycleOwner,
             Observer {
                 if (it.size> 0) {
@@ -41,13 +40,13 @@ class DetailViewModel @Inject constructor(
                     imageviewChange(false, imageView)
                 }
             }
-        )
+        )*/
     }
     private fun imageviewChange(isFav: Boolean?, imageView: ImageView) {
         imageView.changeFollowingResource(isFav, imageView)
     }
     fun insertDeleteDB(viewLifecycleOwner: LifecycleOwner, model: Detail, imageView: ImageView) {
-        var a = 0
+     /*   var a = 0
         repo.checkById(model.id.toString()).observe(
             viewLifecycleOwner,
             Observer {
@@ -65,6 +64,6 @@ class DetailViewModel @Inject constructor(
                     }
                 }
             }
-        )
+        )*/
     }
 }
