@@ -1,11 +1,18 @@
 package example.com.moviedb
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import example.com.moviedb.features.fav.db.FavRepository
 import example.com.moviedb.features.home.HomeViewModel
 import example.com.moviedb.features.home.PopularMovieListSource
 import example.com.moviedb.features.home.model.ResultInfo
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.setMain
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.InjectMocks
 import org.mockito.Mock
@@ -15,6 +22,10 @@ import org.mockito.MockitoAnnotations
 
 @ExperimentalCoroutinesApi
 class HomeViewModelTest {
+
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
+
     @Mock
     private lateinit var repo: FavRepository
 
@@ -24,9 +35,13 @@ class HomeViewModelTest {
     @InjectMocks
     private lateinit var viewmodel: HomeViewModel
 
+    @ExperimentalCoroutinesApi
+    private val testDispatcher = TestCoroutineDispatcher()
+
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
+        Dispatchers.setMain(testDispatcher)
     }
 
     @Test
@@ -51,5 +66,13 @@ class HomeViewModelTest {
     fun testGetPopularList() {
         viewmodel.getPopularMovieList()
         verify(source).getPopularMovieList()
+    }
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun testCheckById() = runBlockingTest{
+        val model = ResultInfo(1,"test","test", "test",true)
+        viewmodel.checkById(model)
+        verify(repo, times(0)).insertMovie(model)
     }
 }
