@@ -24,7 +24,6 @@ class FavRepository(db: FavDatabase) {
         }
     }
     fun checkById(id: Int): Int {
-
         return favDao.checkById(id)
     }
 }
