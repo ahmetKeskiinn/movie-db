@@ -114,8 +114,8 @@ dependencies {
     androidTestImplementation "com.google.truth:$truth_version"
 
     //mockito
-    testImplementation("androidx.test:core:$mockito_test_core")
-    testImplementation("org.mockito:mockito-core:$mockito_core")
+    testImplementation("androidx.test:core:$mockito_core_version")
+    testImplementation("org.mockito:mockito-core:$mockito_core_version")
     testImplementation("org.mockito:mockito-inline:2.8.47")
 
     //timber
@@ -125,31 +125,36 @@ dependencies {
     implementation "com.google.android.material:material:$material_version"
 
     //coroutine test
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine_test"
-    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine_test"
-    testImplementation "androidx.arch.core:core-testing:$arch_test"
-    androidTestImplementation "androidx.arch.core:core-testing:$arch_test"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine_test_version"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine_test_version"
+    testImplementation "androidx.arch.core:core-testing:$arch_test_version"
+    androidTestImplementation "androidx.arch.core:core-testing:$arch_test_version"
     implementation "androidx.room:room-ktx:2.2.5"
 
     //test core
-    androidTestImplementation("androidx.test:core:$android_test")
+    androidTestImplementation("androidx.test:core:$android_test_version")
 
     //junit
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.ext:truth:$android_test")
+    androidTestImplementation("androidx.test.ext:truth:$android_test_version")
 
     //junit runner
-    androidTestImplementation("androidx.test:runner:$android_test")
-    androidTestImplementation("androidx.test:rules:$android_test")
+    androidTestImplementation("androidx.test:runner:$android_test_version")
+    androidTestImplementation("androidx.test:rules:$android_test_version")
 
     //espresso
-    androidTestImplementation("androidx.test.espresso:espresso-core:$espresso")
-    androidTestImplementation("androidx.test.espresso:espresso-contrib:$espresso")
-    androidTestImplementation("androidx.test.espresso:espresso-intents:$espresso")
-    androidTestImplementation("androidx.test.espresso:espresso-accessibility:$espresso")
-    androidTestImplementation("androidx.test.espresso:espresso-web:$espresso")
-    androidTestImplementation("androidx.test.espresso.idling:idling-concurrent:$espresso")
-    androidTestImplementation("androidx.test.espresso:espresso-idling-resource:$espresso")
+    androidTestImplementation("androidx.test.espresso:espresso-core:$espresso_version")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:$espresso_version")
+    androidTestImplementation("androidx.test.espresso:espresso-intents:$espresso_version")
+    androidTestImplementation("androidx.test.espresso:espresso-accessibility:$espresso_version")
+    androidTestImplementation("androidx.test.espresso:espresso-web:$espresso_version")
+    androidTestImplementation("androidx.test.espresso.idling:idling-concurrent:$espresso_version")
+    androidTestImplementation("androidx.test.espresso:espresso-idling-resource:$espresso_version")
 
+    //fragment testing
     debugImplementation("androidx.fragment:fragment-testing:$fragment_version")
+
+    // roboelectric
+    testImplementation 'com.squareup.assertj:assertj-android:1.1.0'
+    testImplementation 'org.robolectric:robolectric:4.2.1'
 }
