@@ -16,7 +16,6 @@ import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
-
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [Build.VERSION_CODES.P])
 class FragmentLifeCycleTest {
@@ -44,9 +43,8 @@ class FragmentLifeCycleTest {
         fragmentStart(homeFragment)
         fragmentStart(favFragment)
         fragmentStart(detailFragment)
-
     }
-    fun fragmentStart(fragment: Fragment){
+    fun fragmentStart(fragment: Fragment) {
         val activity: FragmentActivity = Robolectric.buildActivity(FragmentActivity::class.java)
             .create()
             .start()

@@ -21,5 +21,4 @@ interface FavDAO {
 
     @Query("SELECT * FROM fav where isFav=1")
     fun getAllList(): LiveData<List<ResultInfo>>
-
 }

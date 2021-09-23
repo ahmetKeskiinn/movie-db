@@ -18,8 +18,6 @@ import org.mockito.Mock
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
-import org.robolectric.RobolectricTestRunner
-
 
 @ExperimentalCoroutinesApi
 class HomeViewModelTest {
