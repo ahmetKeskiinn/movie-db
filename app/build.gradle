@@ -15,11 +15,11 @@ android {
     defaultConfig {
         applicationId "example.com.moviedb"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
-        buildConfigField "String", "API_KEY", "\"22574df9e1fe27a06f9bce371fb6aa2a\""
+        buildConfigField "String", "API_KEY", "\"0ec4e305e8b39557c11b12335c70942a\""
         buildConfigField "String", "LANGUAGE", "\"en-US\""
         buildConfigField "String", "IMAGE_BASE_URL", "\"https://image.tmdb.org/t/p/w500\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
